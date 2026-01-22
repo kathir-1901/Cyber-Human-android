@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>TestNG:  Surefire test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Surefire test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>13/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sat Jan 03 17:35:44 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>1074 seconds (1074408 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Empty Email Field, John Doe, , 123456789</td>
+<td></td>
+<td>75</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Invalid Email Format, John Doe, invalidemail, 123456789</td>
+<td></td>
+<td>73</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Short Phone Number, John Doe, test@example.com, 12</td>
+<td></td>
+<td>74</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Email Without @, John Doe, testexample.com, 123456789</td>
+<td></td>
+<td>74</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testChangePassword()'><b>testChangePassword</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Weak Password Validation, Testing@2026, test2026, test2026, //android.view.View[@content-desc='Use at least 8 characters with uppercase, lowercase, number, and special symbol.']</td>
+<td></td>
+<td>68</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testChangePassword()'><b>testChangePassword</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Same Old and New Password Validation, Testing@2026, Testing@2026, Testing@2026, //android.view.View[@content-desc='Current and new password cannot be the same.']</td>
+<td></td>
+<td>67</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Invalid Phone - Letters, John Doe, test@example.com, abcdefgh</td>
+<td></td>
+<td>75</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Email Without Domain, John Doe, test@, 123456789</td>
+<td></td>
+<td>73</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Empty Name Field, , test@example.com, 123456789</td>
+<td></td>
+<td>75</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testNegativeEditProfile()'><b>testNegativeEditProfile</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Empty Phone Number, John Doe, test@example.com, </td>
+<td></td>
+<td>67</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testChangePassword()'><b>testChangePassword</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Wrong Old Password Validation, Testing@2025, Testing@2026, Testing@2026, //android.view.View[@content-desc='Wrong password. Please enter correct password']</td>
+<td></td>
+<td>67</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testChangePassword()'><b>testChangePassword</b><br>Test class: com.automation.tests.EditProfileTest<br>Parameters: Valid Change Password, Testing@2026, Human@2026, Human@2026, SUCCESS</td>
+<td></td>
+<td>70</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+<tr>
+<td title='com.automation.tests.EditProfileTest.testEditProfileWithDateGenderCountry()'><b>testEditProfileWithDateGenderCountry</b><br>Test class: com.automation.tests.EditProfileTest</td>
+<td></td>
+<td>109</td>
+<td>com.automation.tests.EditProfileTest@72057ecf</td></tr>
+</table><p>
+</body>
+</html>

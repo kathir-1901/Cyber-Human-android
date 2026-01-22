@@ -1,0 +1,6 @@
+com/automation/tests/SignUpTest.class
+com/automation/base/BaseTest.class
+com/automation/pages/TwoFactorAuthPage.class
+com/automation/tests/AbChopraHouseTest.class
+com/automation/tests/SignInTest.class
+com/automation/pages/EditProfilePage.class
