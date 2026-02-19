@@ -9,28 +9,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class HomePage {
     private WebDriverWait wait;
+    private AppiumDriver driver;
 
     public HomePage(AppiumDriver driver) {
+        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     // Locators
     private final String dailyPriorityHeadingXpath = "//android.view.View[@content-desc='DAILY PRIORITY']";
-    private final String wellbeingDashboardXpath = "//android.view.View[@content-desc='WELLBEING DASHBOARD\nHOME']";
     private final String proceedButtonXpath = "//android.widget.Button[@content-desc='PROCEED']";
 
     /**
-     * Click on the Wellbeing Dashboard menu button at the bottom
+     * Click on the Wellbeing Dashboard menu button at the bottom.
+     * Uses content-desc with newline character: 'WELLBEING DASHBOARD\nHOME'
      */
     public void clickWellbeingDashboard() {
         try {
+            String xpathNewline = "//android.widget.ImageView[@content-desc='WELLBEING DASHBOARD\nHOME']";
             WebElement dashboardBtn = wait
-                    .until(ExpectedConditions.elementToBeClickable(By.xpath(wellbeingDashboardXpath)));
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath(xpathNewline)));
             dashboardBtn.click();
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Wellbeing Dashboard button not found on Home page", e);
+            System.out.println("Wellbeing Dashboard clicked (newline content-desc)");
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to click Wellbeing Dashboard", e);
         }
     }
 
@@ -71,6 +79,15 @@ public class HomePage {
                     .until(ExpectedConditions.elementToBeClickable(By.xpath(dailyPrescriptionXpath)));
             dailyPrescriptionBtn.click();
         } catch (TimeoutException e) {
+            try {
+                File file = new File("target/page_source_failure.xml");
+                FileWriter writer = new FileWriter(file);
+                writer.write(driver.getPageSource());
+                writer.close();
+                System.out.println("DEBUG: Saved page source to " + file.getAbsolutePath());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             throw new RuntimeException("DAILY PRESCRIPTION button not found on Home page", e);
         }
     }
@@ -84,6 +101,15 @@ public class HomePage {
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath(dailyPriorityHeadingXpath)));
             return heading.isDisplayed();
         } catch (Exception e) {
+            try {
+                File file = new File("target/page_source_home_fail.xml");
+                FileWriter writer = new FileWriter(file);
+                writer.write(driver.getPageSource());
+                writer.close();
+                System.out.println("DEBUG: Saved home page fail source to " + file.getAbsolutePath());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             return false;
         }
     }

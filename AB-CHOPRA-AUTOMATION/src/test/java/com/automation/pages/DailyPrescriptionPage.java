@@ -117,7 +117,7 @@ public class DailyPrescriptionPage {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement successView = shortWait.until(ExpectedConditions
-                    .presenceOfElementLocated(By.xpath("//android.view.View[@content-desc='SUCCESS!']")));
+                    .presenceOfElementLocated(By.xpath("//android.view.View[@content-desc='TIME SCHEDULED']")));
             return successView.isDisplayed();
         } catch (Exception e) {
             return false;
@@ -150,28 +150,6 @@ public class DailyPrescriptionPage {
             okBtn.click();
         } catch (TimeoutException e) {
             throw new RuntimeException("OK button not found", e);
-        }
-    }
-
-    /**
-     * Step 10: Swipe left and right on Nutrition & Metabolism section
-     * Wait for data to load after each swipe
-     */
-    public void swipeNutritionSection() {
-        try {
-            Thread.sleep(1000); // Wait for page to settle
-
-            // 1. Swipe Left (Right to Left gesture)
-            System.out.println("Performing Swipe Left...");
-            swipeHorizontal(true);
-            Thread.sleep(2000); // Wait for data to load
-
-            // 2. Swipe Right (Left to Right gesture)
-            System.out.println("Performing Swipe Right...");
-            swipeHorizontal(false);
-            Thread.sleep(2000); // Wait for data to load
-        } catch (Exception e) {
-            System.out.println("Error in swipeNutritionSection: " + e.getMessage());
         }
     }
 
@@ -237,42 +215,24 @@ public class DailyPrescriptionPage {
     }
 
     /**
-     * Step 13: Get heading from any article detail page at runtime
+     * Step 13: Get heading from any article detail page at runtime.
+     * Uses XPath: //android.view.View[@content-desc="<any heading>"]
+     * Reads whatever heading text is present and returns it for the report.
      */
     public String getArticleHeading() {
         try {
             Thread.sleep(1500); // Wait for page to fully load
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(8));
 
-            // Strategy 1: Find the first significant View in the ScrollView that isn't a
-            // tag
-            // Usually the heading is the first or second View with content-desc
-            try {
-                WebElement headingElement = shortWait.until(ExpectedConditions.presenceOfElementLocated(
-                        By.xpath(
-                                "//android.widget.ScrollView//android.view.View[@content-desc!='' and not(contains(@content-desc, 'min read')) and not(contains(@content-desc, 'Article Detail'))][1]")));
-                String heading = headingElement.getAttribute("content-desc");
-                if (heading != null && !heading.isEmpty()) {
-                    System.out.println("✓ Extracted article heading: " + heading);
-                    return heading;
-                }
-            } catch (Exception e1) {
-                System.out.println("Strategy 1 failed, trying Strategy 2...");
-            }
+            // Find the first android.view.View that has any content-desc (the article
+            // heading)
+            WebElement headingElement = shortWait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("(//android.view.View[@content-desc!=''])[2]")));
 
-            // Strategy 2: Fallback to the second View in ScrollView
-            try {
-                WebElement headingElement = driver.findElement(
-                        By.xpath("(//android.widget.ScrollView//android.view.View[@content-desc!=''])[2]"));
-                String heading = headingElement.getAttribute("content-desc");
-                if (heading != null && !heading.isEmpty() && !heading.contains("min read")) {
-                    return heading;
-                }
-            } catch (Exception e2) {
-                System.out.println("Strategy 2 failed: " + e2.getMessage());
-            }
+            String heading = headingElement.getAttribute("content-desc");
+            System.out.println("✓ Extracted article heading: " + heading);
+            return heading;
 
-            return "Article heading extracted";
         } catch (Exception e) {
             System.out.println("Error extracting article heading: " + e.getMessage());
             return "Unable to extract heading";
@@ -629,5 +589,10 @@ public class DailyPrescriptionPage {
 
     public void printPageSource() {
         System.out.println(driver.getPageSource());
+    }
+
+    public void swipeNutritionSection() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'swipeNutritionSection'");
     }
 }

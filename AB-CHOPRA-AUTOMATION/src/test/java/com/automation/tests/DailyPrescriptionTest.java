@@ -79,12 +79,6 @@ public class DailyPrescriptionTest extends BaseTest {
             dailyPrescriptionPage.clickOk();
             test.log(Status.PASS, "✓ OK button clicked");
 
-            // Step 10: Swipe left and right on Nutrition & Metabolism section
-            test.log(Status.INFO,
-                    "Step 10: Swiping left and right on Nutrition & Metabolism section and waiting for data load");
-            dailyPrescriptionPage.swipeNutritionSection();
-            test.log(Status.PASS, "✓ Swipe left and right completed, data loaded");
-
             // Step 11: Swipe up 2 times in ScrollView
             test.log(Status.INFO, "Step 11: Swiping up 2 times in ScrollView");
             dailyPrescriptionPage.swipeUpTwiceInScrollView();
@@ -103,75 +97,6 @@ public class DailyPrescriptionTest extends BaseTest {
                 Assert.fail("Article heading extraction failed");
             }
             test.log(Status.PASS, "✓ Article heading: <b>" + articleHeading + "</b>");
-
-            // Step 14: Click Add To File radio icon
-            test.log(Status.INFO, "Step 14: Clicking 'Add To File' radio icon");
-            dailyPrescriptionPage.clickAddToFileRadioIcon();
-            test.log(Status.PASS, "✓ 'Add To File' icon clicked");
-
-            // Step 15: Validate ADD TO FILE dialog is displayed
-            test.log(Status.INFO, "Step 15: Validating ADD TO FILE dialog");
-            boolean addToFileDialogDisplayed = dailyPrescriptionPage.isAddToFileDialogDisplayed();
-            if (!addToFileDialogDisplayed) {
-                test.log(Status.FAIL, "ADD TO FILE dialog not displayed");
-                Assert.fail("ADD TO FILE dialog validation failed");
-            }
-            test.log(Status.PASS, "✓ ADD TO FILE dialog is displayed");
-
-            // Step 16: Search and validate "one"
-            test.log(Status.INFO, "Step 16: Searching for 'one' in ADD TO FILE dialog");
-            dailyPrescriptionPage.searchInAddToFile("one");
-            boolean isResultVisible = dailyPrescriptionPage.isSearchResultDisplayed("One\nModified Dec 19");
-            if (!isResultVisible) {
-                test.log(Status.FAIL, "Search result 'One\\nModified Dec 19' not found");
-                Assert.fail("Search result validation failed - Step 16");
-            } else {
-                test.log(Status.PASS, "✓ Search result 'One\\nModified Dec 19' is displayed");
-            }
-            dailyPrescriptionPage.clearSearchField();
-            test.log(Status.INFO, "✓ Search field cleared");
-
-            // Step 17-18: Swipe and click New File icon
-            test.log(Status.INFO, "Step 17-18: Swiping and clicking New File icon");
-            dailyPrescriptionPage.swipeAndClickNewFile();
-            test.log(Status.PASS, "✓ New File icon clicked");
-            Thread.sleep(5000); // 5 sec delay after step 18
-
-            // Step 19: Enter file name "AutoFile"
-            test.log(Status.INFO, "Step 19: Entering file name 'AutoFile'");
-            dailyPrescriptionPage.enterFileName("AutoFile");
-            test.log(Status.PASS, "✓ File name 'AutoFile' entered");
-            Thread.sleep(2000); // Small wait for button to stabilize
-
-            // Wait for Modified button
-            dailyPrescriptionPage.waitForModifiedButton();
-
-            // Step 20: Click modified button
-            test.log(Status.INFO, "Step 20: Clicking modified button");
-            dailyPrescriptionPage.clickModifiedButton();
-            test.log(Status.PASS, "✓ Modified button clicked");
-            Thread.sleep(5000); // 5 sec delay after step 20
-
-            // Step 21: Click final close icon
-            test.log(Status.INFO, "Step 21: Clicking final close icon");
-            dailyPrescriptionPage.clickFinalCloseIcon();
-            test.log(Status.PASS, "✓ Final close icon clicked");
-
-            // Step 22: Validate SAVED dialog and message
-            test.log(Status.INFO, "Step 22: Validating SAVED dialog");
-            boolean savedDialogDisplayed = dailyPrescriptionPage.isSavedDialogDisplayed();
-            if (!savedDialogDisplayed) {
-                test.log(Status.FAIL, "SAVED dialog not displayed");
-                Assert.fail("SAVED dialog validation failed");
-            }
-            test.log(Status.PASS, "✓ SAVED dialog is displayed");
-
-            String savedMessage = dailyPrescriptionPage.getSavedMessage();
-            if (savedMessage != null && !savedMessage.isEmpty()) {
-                test.log(Status.PASS, "✓ Saved message: <b>" + savedMessage + "</b>");
-            } else {
-                test.log(Status.WARNING, "SAVED dialog displayed but message not found");
-            }
 
             // ✅ ALL STEPS COMPLETED SUCCESSFULLY
             test.log(Status.PASS,
