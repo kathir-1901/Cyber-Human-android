@@ -97,19 +97,12 @@ public class HomePage {
      */
     public boolean isHomePageDisplayed() {
         try {
-            WebElement heading = wait
+            // Short 3-second wait — avoids long hang on every failed check
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement heading = shortWait
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath(dailyPriorityHeadingXpath)));
             return heading.isDisplayed();
         } catch (Exception e) {
-            try {
-                File file = new File("target/page_source_home_fail.xml");
-                FileWriter writer = new FileWriter(file);
-                writer.write(driver.getPageSource());
-                writer.close();
-                System.out.println("DEBUG: Saved home page fail source to " + file.getAbsolutePath());
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
             return false;
         }
     }

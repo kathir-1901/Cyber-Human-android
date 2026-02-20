@@ -64,9 +64,12 @@ public class EditProfilePage {
     }
 
     /**
-     * Enter phone number in the Phone Number field
+     * Enter phone number in the Phone Number field.
+     * Strategy 1: Find by hint='Phone Number'.
+     * Fallback : Find any EditText whose text contains only digits (0-9).
      */
     public void enterPhoneNumber(String phoneNumber) {
+        // Strategy 1: standard hint-based XPath
         try {
             WebElement phoneField = wait
                     .until(ExpectedConditions.elementToBeClickable(By.xpath(phoneNumberFieldXpath)));
@@ -74,36 +77,55 @@ public class EditProfilePage {
             phoneField.clear();
             phoneField.sendKeys(phoneNumber);
             hideKeyboard();
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Phone Number field not found on Edit Profile page", e);
+            System.out.println("Entered phone number using hint XPath.");
+            return;
+        } catch (Exception e) {
+            System.out.println("Hint XPath failed for Phone Number. Attempting numeric-text fallback...");
+        }
+
+        // Fallback: any EditText whose @text is purely numeric (0-9, length > 0)
+        try {
+            String numericXpath = "//android.widget.EditText["
+                    + "string-length(@text) > 0 and "
+                    + "string-length(translate(@text,'0123456789','')) = 0]";
+            WebElement phoneField = wait
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath(numericXpath)));
+            phoneField.click();
+            phoneField.clear();
+            phoneField.sendKeys(phoneNumber);
+            hideKeyboard();
+            System.out.println("Entered phone number using numeric-text fallback XPath.");
+        } catch (Exception ex) {
+            throw new RuntimeException("Phone Number field not found on Edit Profile page after fallback", ex);
         }
     }
 
     /**
-     * Click the Date of Birth field to open date picker
-     * Includes robust fallback for when validation messages block the view
+     * Click the Date of Birth field to open date picker.
+     * Strategy 1: Standard elementToBeClickable + click.
+     * Fallback : presenceOfElementLocated + force tap (W3C Actions).
      */
     public void clickDateOfBirth() {
         try {
-            hideKeyboard(); // Ensure keyboard is closed
-            Thread.sleep(500); // Small pause
+            hideKeyboard();
+            Thread.sleep(500);
             WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateOfBirthFieldXpath)));
             dobField.click();
+            System.out.println("Clicked Date of Birth using standard click.");
         } catch (Exception e) {
-            // Retry with Force Scroll and Force Tap
             try {
-                System.out.println("Standard click failed for Date of Birth. Attempting Force Scroll & Tap...");
+                System.out.println("Standard click failed for Date of Birth. Attempting fallback tap via date text...");
                 hideKeyboard();
-                swipeUp(); // Scroll down to ensure it's in view
                 Thread.sleep(500);
-
+                // Find any View whose text contains '/' — e.g. "01/01/2008"
                 WebElement dobField = wait
-                        .until(ExpectedConditions.presenceOfElementLocated(By.xpath(dateOfBirthFieldXpath)));
-                tapElement(dobField); // Force tap using W3C Actions
-                System.out.println("Force tap successful for Date of Birth");
+                        .until(ExpectedConditions.presenceOfElementLocated(
+                                By.xpath("//android.view.View[contains(@text, '/')]")));
+                tapElement(dobField);
+                System.out.println("Fallback tap successful for Date of Birth (matched by '/' in text).");
             } catch (Exception ex) {
                 throw new RuntimeException(
-                        "Date of Birth field not found or clickable on Edit Profile page after retry", ex);
+                        "Date of Birth field not found or clickable on Edit Profile page after fallback", ex);
             }
         }
     }
@@ -199,24 +221,24 @@ public class EditProfilePage {
      * Includes robust fallback
      */
     public void clickGender() {
+        // Strategy 1: Standard click on gender dropdown button
         try {
             WebElement genderBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(genderButtonXpath)));
             genderBtn.click();
-        } catch (TimeoutException e) {
-            // Retry with Force Scroll and Force Tap
-            try {
-                System.out.println("Standard click failed for Gender. Attempting Force Scroll & Tap...");
-                swipeUp(); // Scroll down
-                Thread.sleep(500);
-                WebElement genderBtn = wait
-                        .until(ExpectedConditions.presenceOfElementLocated(By.xpath(genderButtonXpath)));
-                tapElement(genderBtn);
-                System.out.println("Force tap successful for Gender");
-            } catch (Exception ex) {
-                throw new RuntimeException("Gender button not found on Edit Profile page after retry", ex);
-            }
+            System.out.println("Clicked Gender using standard click.");
+            return;
         } catch (Exception e) {
-            throw new RuntimeException("Gender button interaction failed", e);
+            System.out.println("Standard click failed for Gender. Attempting fallback...");
+        }
+
+        // Strategy 2: Click Male ImageView directly (already selected / already open)
+        try {
+            WebElement maleImageView = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.ImageView[@content-desc='Male']")));
+            maleImageView.click();
+            System.out.println("Clicked Gender via Male ImageView fallback.");
+        } catch (Exception ex) {
+            throw new RuntimeException("Gender button not found on Edit Profile page after fallback", ex);
         }
     }
 
@@ -353,6 +375,137 @@ public class EditProfilePage {
         }
     }
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // PROFILE IMAGE — UPLOAD & REMOVE
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Step 7 / 13 – Click the profile avatar icon to open the image options menu
+     */
+    public void clickProfileImageIcon() {
+        String xpath = "//android.widget.FrameLayout[@resource-id='android:id/content']"
+                + "/android.widget.FrameLayout/android.widget.FrameLayout"
+                + "/android.view.View/android.view.View/android.view.View"
+                + "/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView";
+        try {
+            WebElement icon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+            icon.click();
+            System.out.println("Clicked profile image icon.");
+        } catch (Exception e) {
+            throw new RuntimeException("Profile image icon not found", e);
+        }
+    }
+
+    /** Step 8 – Click 'CHOOSE FROM GALLERY' in the options sheet */
+    public void clickChooseFromGallery() {
+        try {
+            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.view.View[@content-desc='CHOOSE FROM GALLERY']")));
+            btn.click();
+            System.out.println("Clicked CHOOSE FROM GALLERY.");
+        } catch (Exception e) {
+            throw new RuntimeException("'CHOOSE FROM GALLERY' option not found", e);
+        }
+    }
+
+    /** Step 9 – Select the first image from the gallery grid */
+    public void selectGalleryImage() {
+        String xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View"
+                + "/android.view.View/android.view.View/android.view.View[5]"
+                + "/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View";
+        try {
+            WebElement image = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+            image.click();
+            System.out.println("Selected gallery image.");
+        } catch (Exception e) {
+            throw new RuntimeException("Gallery image not found", e);
+        }
+    }
+
+    /** Step 10 – Confirm / crop the selected image */
+    public void confirmCropImage() {
+        String xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View"
+                + "/android.view.View/android.view.View/android.view.View[6]"
+                + "/android.view.View/android.view.View[3]/android.widget.Button";
+        try {
+            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+            btn.click();
+            System.out.println("Clicked crop/confirm button.");
+        } catch (Exception e) {
+            throw new RuntimeException("Crop confirm button not found", e);
+        }
+    }
+
+    /** Step 11 – Returns true if 'PROFILE IMAGE UPLOADED' dialog is visible */
+    public boolean isProfileImageUploadedDialogDisplayed() {
+        try {
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement dialog = shortWait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//android.view.View[@content-desc='PROFILE IMAGE UPLOADED']")));
+            return dialog.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /** Step 11 – Gets the upload success message text */
+    public String getProfileImageUploadSuccessMessage() {
+        try {
+            WebElement msg = driver.findElement(By.xpath(
+                    "//android.view.View[@content-desc='Your profile image has been uploaded successfully.']"));
+            return msg.getAttribute("content-desc");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /** Step 12 / 16 – Click the OK button on any dialog */
+    public void clickOkButton() {
+        try {
+            WebElement ok = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.Button[@content-desc='OK']")));
+            ok.click();
+            System.out.println("Clicked OK button.");
+        } catch (Exception e) {
+            throw new RuntimeException("OK button not found", e);
+        }
+    }
+
+    /** Step 14 – Click 'REMOVE PHOTO' in the options sheet */
+    public void clickRemovePhoto() {
+        try {
+            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.view.View[@content-desc='REMOVE PHOTO']")));
+            btn.click();
+            System.out.println("Clicked REMOVE PHOTO.");
+        } catch (Exception e) {
+            throw new RuntimeException("'REMOVE PHOTO' option not found", e);
+        }
+    }
+
+    /** Step 15 – Returns true if 'DELETE SUCCESSFUL' dialog is visible */
+    public boolean isProfileImageDeletedDialogDisplayed() {
+        try {
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement dialog = shortWait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//android.view.View[@content-desc='DELETE SUCCESSFUL']")));
+            return dialog.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /** Step 15 – Gets the remove success message text */
+    public String getProfileImageRemoveSuccessMessage() {
+        try {
+            WebElement msg = driver.findElement(By.xpath(
+                    "//android.view.View[@content-desc='Your profile image has been removed successfully.']"));
+            return msg.getAttribute("content-desc");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     /**
      * Check if Edit Profile page is displayed
      */
@@ -361,6 +514,24 @@ public class EditProfilePage {
             WebElement heading = wait
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath(editProfileHeadingXpath)));
             return heading.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the 'UPDATED SUCCESSFULLY' success popup is visible.
+     * Uses an 8-second wait since the popup may take a moment to appear after save.
+     * Call this IMMEDIATELY after clickSaveChanges() before any Thread.sleep.
+     *
+     * @return true if success popup is visible
+     */
+    public boolean isSuccessPopupVisible() {
+        try {
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(8));
+            WebElement successPopup = longWait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//android.view.View[@content-desc='UPDATED SUCCESSFULLY']")));
+            return successPopup.isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -381,10 +552,10 @@ public class EditProfilePage {
     public boolean isAnyValidationVisible() {
         WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
-        // Check -1: Success Popup (User requested to treat success as pass)
+        // Check -1: Success Popup → treat as detected (profile saved = valid input)
         try {
             WebElement successPopup = shortWait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//android.view.View[@content-desc='Your profile has been updated']")));
+                    By.xpath("//android.view.View[@content-desc='UPDATED SUCCESSFULLY']")));
             if (successPopup.isDisplayed()) {
                 return true;
             }
@@ -485,7 +656,7 @@ public class EditProfilePage {
         // Priority -1: Success Popup
         try {
             WebElement successPopup = shortWait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//android.view.View[@content-desc='Your profile has been updated']")));
+                    By.xpath("//android.view.View[@content-desc='UPDATED SUCCESSFULLY']")));
             if (successPopup.isDisplayed()) {
                 return successPopup.getAttribute("content-desc");
             }

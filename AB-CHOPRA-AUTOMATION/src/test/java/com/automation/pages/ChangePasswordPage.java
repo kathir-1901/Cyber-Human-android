@@ -26,7 +26,7 @@ public class ChangePasswordPage {
     private final String changePasswordButtonXpath = "//android.widget.Button[@content-desc='CHANGE PASSWORD']";
 
     // Validation Messages
-    private final String wrongPasswordErrorXpath = "//android.view.View[@content-desc='Wrong password. Please enter correct password']";
+    private final String wrongPasswordErrorXpath = "//android.view.View[@content-desc='Wrong password. Please enter correct password.']";
     private final String weakPasswordErrorXpath = "//android.view.View[@content-desc='Use at least 8 characters with uppercase, lowercase, number, and special symbol.']";
     private final String samePasswordErrorXpath = "//android.view.View[@content-desc='Current and new password cannot be the same.']";
     private final String successDialogXpath = "//android.view.View[@content-desc='PASSWORD CHANGE SUCCESSFUL']";
