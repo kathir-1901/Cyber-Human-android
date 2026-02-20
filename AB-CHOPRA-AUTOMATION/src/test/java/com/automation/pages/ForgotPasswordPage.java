@@ -54,7 +54,7 @@ public class ForgotPasswordPage {
     private final String getNewCodeXpath = "//android.view.View[@content-desc=\"Get a new code\"]";
 
     // Step 13: Resend Successful dialog
-    private final String resendSuccessfulDialogXpath = "//android.view.View[@content-desc=\"RESEND SUCCESSFUL\"]";
+    private final String resendSuccessfulDialogXpath = "//android.view.View[@content-desc=\"RESENT SUCCESSFULLY\"]";
     private final String resendSuccessMessageXpath = "//android.view.View[@content-desc=\"Verification code has been send successfully.\"]";
 
     // Step 16: Reset Password page

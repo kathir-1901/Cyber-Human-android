@@ -3,16 +3,16 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.automation.tests.EditProfileTest">
+      <class name="com.automation.tests.ForgotPasswordTest">
         <methods>
-          <include name="testNegativeEditProfile"/>
+          <include name="testForgotPasswordFlow"/>
           <include name="setup"/>
+          <include name="navigateToSignInPageBeforeTest"/>
           <include name="tearDownReport"/>
-          <include name="testChangePassword"/>
           <include name="setupReport"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- com.automation.tests.EditProfileTest -->
+      </class> <!-- com.automation.tests.ForgotPasswordTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
