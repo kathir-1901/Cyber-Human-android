@@ -608,8 +608,8 @@ public class SignUpPage {
     public boolean isResendSuccessfulDialogDisplayed() {
         try {
             WebElement resendDialog = findElementWithFallback(null,
-                    "//android.view.View[@content-desc='RESEND SUCCESSFUL']",
-                    "RESEND SUCCESSFUL");
+                    "//android.view.View[@content-desc='RESENT SUCCESSFULLY']",
+                    "RESENT SUCCESSFULLY");
             return resendDialog.isDisplayed();
         } catch (Exception e) {
             return false;
