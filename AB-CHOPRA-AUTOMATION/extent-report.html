@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Appium Login Automation Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Feb 20, 2026 06:18:58 PM</span></a>
+<a href="#"><span class="badge badge-primary">Feb 23, 2026 02:24:43 PM</span></a>
 </li>
 </ul>
 </div>
@@ -79,9 +79,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Forgot Password - Complete Flow Test</p>
+            <p class="name">Negative Test: Invalid Password</p>
             <p class="text-sm">
-              <span>6:19:14 PM</span> / <span>00:02:48:229</span>
+              <span>2:24:58 PM</span> / <span>00:00:17:786</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -89,10 +89,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Forgot Password - Complete Flow Test</h5>
-<span class='badge badge-success'>02.20.2026 6:19:14 PM</span>
-<span class='badge badge-danger'>02.20.2026 6:22:03 PM</span>
-<span class='badge badge-default'>00:02:48:229</span>
+<h5 class="test-status text-pass">Negative Test: Invalid Password</h5>
+<span class='badge badge-success'>02.23.2026 2:24:58 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:25:16 PM</span>
+<span class='badge badge-default'>00:00:17:786</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -105,499 +105,611 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:14 PM</td>
+        <td>2:24:58 PM</td>
         <td>
-          Starting Forgot Password Flow Test
+          Email: 'testuser@example.com' | Password: 'WrongPass'
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:14 PM</td>
+        <td>2:25:02 PM</td>
         <td>
-          Step 1: Clicking Forgot Password button
+          Entered credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:25:03 PM</td>
+        <td>
+          Clicked Continue button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:25:16 PM</td>
+        <td>
+          📋 Validation message displayed: "Invalid email or password. Please check your credentials and try again."
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:14 PM</td>
+        <td>2:25:16 PM</td>
         <td>
-          ✓ Step 1: Forgot Password button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:16 PM</td>
-        <td>
-          Step 2: Entering invalid email (abc@gmai.com)
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:19 PM</td>
+        <td>2:25:16 PM</td>
         <td>
-          ✓ Step 2: Invalid email entered
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Invalid Email Format</p>
+            <p class="text-sm">
+              <span>2:25:34 PM</span> / <span>00:00:17:366</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Invalid Email Format</h5>
+<span class='badge badge-success'>02.23.2026 2:25:34 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:25:51 PM</span>
+<span class='badge badge-default'>00:00:17:366</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:25:34 PM</td>
+        <td>
+          Email: 'testuser' | Password: 'Password@123'
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:20 PM</td>
+        <td>2:25:37 PM</td>
         <td>
-          Step 3: Clicking SEND MESSAGE button
+          Entered credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:25:39 PM</td>
+        <td>
+          Clicked Continue button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:25:51 PM</td>
+        <td>
+          📋 Validation message displayed: "Invalid email. Please check your credentials."
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:21 PM</td>
+        <td>2:25:51 PM</td>
         <td>
-          ✓ Step 3: SEND MESSAGE button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:26 PM</td>
-        <td>
-          Step 4: Capturing runtime error message for invalid email
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:26 PM</td>
-        <td>
-          📋 Error Message: We couldn’t find an account with that email. Try a different one or sign up to get started.
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:26 PM</td>
+        <td>2:25:51 PM</td>
         <td>
-          ✓ Step 4: Runtime error message captured and displayed in report
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Non-existent Account</p>
+            <p class="text-sm">
+              <span>2:26:07 PM</span> / <span>00:00:17:248</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Non-existent Account</h5>
+<span class='badge badge-success'>02.23.2026 2:26:07 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:26:24 PM</span>
+<span class='badge badge-default'>00:00:17:248</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:26:07 PM</td>
+        <td>
+          Email: 'notfound@example.com' | Password: 'Password@123'
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:28 PM</td>
+        <td>2:26:10 PM</td>
         <td>
-          Step 5: Entering valid email (kathirmskgt@gmail.com)
+          Entered credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:26:12 PM</td>
+        <td>
+          Clicked Continue button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:26:24 PM</td>
+        <td>
+          📋 Validation message displayed: "Invalid email or password. Please check your credentials and try again."
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:30 PM</td>
+        <td>2:26:24 PM</td>
         <td>
-          ✓ Step 5: Valid email entered
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:31 PM</td>
-        <td>
-          Step 6: Clicking SEND MESSAGE button
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:33 PM</td>
+        <td>2:26:24 PM</td>
         <td>
-          ✓ Step 6: SEND MESSAGE button clicked
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Empty Email</p>
+            <p class="text-sm">
+              <span>2:26:41 PM</span> / <span>00:01:47:818</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Empty Email</h5>
+<span class='badge badge-success'>02.23.2026 2:26:41 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:28:29 PM</span>
+<span class='badge badge-default'>00:01:47:818</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:26:41 PM</td>
+        <td>
+          Email: '' | Password: 'Password@123'
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:36 PM</td>
+        <td>2:26:44 PM</td>
         <td>
-          Step 7: Entering OTP code (123456)
+          Entered credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:26:45 PM</td>
+        <td>
+          Clicked Continue button
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:40 PM</td>
+        <td>2:28:29 PM</td>
         <td>
-          ✓ Step 7: OTP code (123456) entered
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:42 PM</td>
-        <td>
-          Step 8: Verifying ENTER VERIFICATION CODE page is displayed
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:43 PM</td>
+        <td>2:28:29 PM</td>
         <td>
-          ✓ Step 8: ENTER VERIFICATION CODE page verified
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="5"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Empty Password</p>
+            <p class="text-sm">
+              <span>2:28:48 PM</span> / <span>00:01:48:178</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Empty Password</h5>
+<span class='badge badge-success'>02.23.2026 2:28:48 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:30:36 PM</span>
+<span class='badge badge-default'>00:01:48:178</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:28:48 PM</td>
+        <td>
+          Email: 'testuser@example.com' | Password: ''
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:43 PM</td>
+        <td>2:28:51 PM</td>
         <td>
-          Waiting 5 seconds...
+          Entered credentials
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:48 PM</td>
+        <td>2:28:52 PM</td>
         <td>
-          Step 9: Clicking VERIFY button with invalid OTP
+          Clicked Continue button
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:48 PM</td>
+        <td>2:30:36 PM</td>
         <td>
-          ✓ Step 9: VERIFY button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:51 PM</td>
-        <td>
-          Step 10: Verifying FAILED TO VERIFY OTP dialog is displayed
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:52 PM</td>
+        <td>2:30:36 PM</td>
         <td>
-          ✓ Step 10: FAILED TO VERIFY OTP dialog verified
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="6"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Both Empty</p>
+            <p class="text-sm">
+              <span>2:30:52 PM</span> / <span>00:01:47:088</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Both Empty</h5>
+<span class='badge badge-success'>02.23.2026 2:30:52 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:32:39 PM</span>
+<span class='badge badge-default'>00:01:47:088</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:30:52 PM</td>
+        <td>
+          Email: '' | Password: ''
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:52 PM</td>
+        <td>2:30:54 PM</td>
         <td>
-          Step 11: Capturing OTP error message
+          Entered credentials
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:52 PM</td>
+        <td>2:30:55 PM</td>
         <td>
-          📋 OTP Error Message: Please try again later.
+          Clicked Continue button
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:52 PM</td>
+        <td>2:32:39 PM</td>
         <td>
-          ✓ Step 11: OTP error message captured and displayed in report
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:54 PM</td>
-        <td>
-          Step 12: Clicking OK button
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:19:54 PM</td>
+        <td>2:32:39 PM</td>
         <td>
-          ✓ Step 12: OK button clicked
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Negative Test: Special Characters Email</p>
+            <p class="text-sm">
+              <span>2:32:55 PM</span> / <span>00:00:17:236</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Negative Test: Special Characters Email</h5>
+<span class='badge badge-success'>02.23.2026 2:32:55 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:33:12 PM</span>
+<span class='badge badge-default'>00:00:17:236</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:32:55 PM</td>
+        <td>
+          Email: 'test@#$%@example.com' | Password: 'Password@123'
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:19:56 PM</td>
+        <td>2:32:58 PM</td>
         <td>
-          Step 13: Clearing all OTP numbers
+          Entered credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:32:59 PM</td>
+        <td>
+          Clicked Continue button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:33:12 PM</td>
+        <td>
+          📋 Validation message displayed: "Invalid email. Please check your credentials."
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:09 PM</td>
+        <td>2:33:12 PM</td>
         <td>
-          ✓ Step 13: OTP code cleared
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:10 PM</td>
-        <td>
-          Step 14: Waiting for 'Get a new code' link and clicking it
+          ✓ Validation detected at runtime - Negative case handled correctly
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:10 PM</td>
+        <td>2:33:12 PM</td>
         <td>
-          ✓ Step 14: 'Get a new code' link clicked
+          Test PASSED: Application showed validation for invalid input
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Positive Test: Valid Login</p>
+            <p class="text-sm">
+              <span>2:33:29 PM</span> / <span>00:01:42:391</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Positive Test: Valid Login</h5>
+<span class='badge badge-success'>02.23.2026 2:33:29 PM</span>
+<span class='badge badge-danger'>02.23.2026 2:35:11 PM</span>
+<span class='badge badge-default'>00:01:42:391</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:33:29 PM</td>
+        <td>
+          Testing valid credentials
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:13 PM</td>
+        <td>2:33:32 PM</td>
         <td>
-          Step 15: Verifying RESEND SUCCESSFUL dialog is displayed
+          Entered valid credentials
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:33:34 PM</td>
+        <td>
+          Clicked Continue button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:15 PM</td>
+        <td>
+          Clicked SKIP FOR NOW
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:23 PM</td>
+        <td>
+          Waiting for Home page... (Attempt 1)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:32 PM</td>
+        <td>
+          Waiting for Home page... (Attempt 2)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:41 PM</td>
+        <td>
+          Waiting for Home page... (Attempt 3)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:50 PM</td>
+        <td>
+          Waiting for Home page... (Attempt 4)
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:13 PM</td>
+        <td>2:34:53 PM</td>
         <td>
-          ✓ Step 15: RESEND SUCCESSFUL dialog verified
+          ✓ Home page displayed successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:14 PM</td>
+        <td>2:34:54 PM</td>
         <td>
-          📋 Resend Success Message: Verification code has been send successfully.
+          Clicked Wellbeing Dashboard menu
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:56 PM</td>
+        <td>
+          Clicked PROFILE button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:34:59 PM</td>
+        <td>
+          Clicked LOG OUT button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:35:01 PM</td>
+        <td>
+          Clicked YES for logout confirmation
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:14 PM</td>
+        <td>2:35:11 PM</td>
         <td>
-          ✓ Step 15: Resend success message captured and displayed in report
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:16 PM</td>
-        <td>
-          Step 16: Clicking OK button
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:16 PM</td>
-        <td>
-          ✓ Step 16: OK button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:16 PM</td>
-        <td>
-          Waiting 10 seconds...
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:26 PM</td>
-        <td>
-          Step 17: Clicking VERIFY button with correct OTP
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:27 PM</td>
-        <td>
-          ✓ Step 17: VERIFY button clicked with correct OTP
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:30 PM</td>
-        <td>
-          Step 18: Verifying RESET PASSWORD page is displayed
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:30 PM</td>
-        <td>
-          ✓ Step 18: RESET PASSWORD page verified
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:30 PM</td>
-        <td>
-          Step 19: Entering mismatched passwords (1234 and 123466)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:35 PM</td>
-        <td>
-          ✓ Step 19: Mismatched passwords entered
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:36 PM</td>
-        <td>
-          Step 20: Clicking RESET PASSWORD button
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:40 PM</td>
-        <td>
-          ✓ Step 20: RESET PASSWORD button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:43 PM</td>
-        <td>
-          Step 21: Capturing password validation error message
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:49 PM</td>
-        <td>
-          📋 Password Validation Error: Passwords do not match
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:49 PM</td>
-        <td>
-          ✓ Step 21: Password validation error captured and displayed in report
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:51 PM</td>
-        <td>
-          Dismissing error message to make password fields accessible
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:54 PM</td>
-        <td>
-          Step 22: Entering wrong password in first field (123)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:20:56 PM</td>
-        <td>
-          ✓ Step 22: Wrong password entered in first field (123)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:20:57 PM</td>
-        <td>
-          Step 23: Entering wrong password in second field (123)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:14 PM</td>
-        <td>
-          ✓ Step 23: Wrong password entered in second field (123)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:15 PM</td>
-        <td>
-          Step 24: Clicking RESET PASSWORD button
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:19 PM</td>
-        <td>
-          ✓ Step 24: RESET PASSWORD button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:22 PM</td>
-        <td>
-          Step 25: Capturing 'Passwords do not match' error message
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:22 PM</td>
-        <td>
-          📋 Error Message: Use at least 8 characters with uppercase, lowercase, number, and special symbol.
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:22 PM</td>
-        <td>
-          ✓ Step 25: 'Passwords do not match' error captured and displayed in report
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:24 PM</td>
-        <td>
-          Dismissing error message to make password fields accessible
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:33 PM</td>
-        <td>
-          Step 26: Entering correct password in first field (Testing@2026)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:35 PM</td>
-        <td>
-          ✓ Step 26: Correct password entered in first field (Testing@2026)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:36 PM</td>
-        <td>
-          Step 27: Entering correct password in second field (Testing@2026)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:53 PM</td>
-        <td>
-          ✓ Step 27: Correct password entered in second field (Testing@2026)
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:21:54 PM</td>
-        <td>
-          Step 28: Clicking RESET PASSWORD button
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:21:57 PM</td>
-        <td>
-          ✓ Step 28: RESET PASSWORD button clicked
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:22:02 PM</td>
-        <td>
-          Step 29: Verifying application is on SIGN IN page
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:22:03 PM</td>
-        <td>
-          ✓ Step 29: SIGN IN page verified
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>6:22:03 PM</td>
-        <td>
-          📧 Please check the email for password reset confirmation
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:22:03 PM</td>
-        <td>
-          Forgot Password Flow Test completed successfully
+          ✓ SIGN IN page displayed - Test Passed
         </td>
       </tr>
   </tbody>
@@ -619,19 +731,19 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Feb 20, 2026 06:18:58 PM</h3>
+<h3>Feb 23, 2026 02:24:43 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Feb 20, 2026 06:22:05 PM</h3>
+<h3>Feb 23, 2026 02:35:14 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>1</h3>
+<h3>8</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -654,7 +766,7 @@
 </div>
 <div class="card-footer">
 <div><small data-tooltip='100%'>
-<b>1</b> tests passed
+<b>8</b> tests passed
 </small>
 </div>
 <div>
@@ -676,10 +788,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='43%'><b>31</b> events passed</small></div>
+<div><small data-tooltip='30%'><b>16</b> events passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>40</b> others
+<b data-tooltip='%'>37</b> others
 </small>
 </div>
 </div>
@@ -695,7 +807,7 @@
 </div></div>
 <script>
 var timeline = {
-"Forgot Password - Complete Flow Test":168.229
+"Negative Test: Invalid Password":17.786,"Negative Test: Invalid Email Format":17.366,"Negative Test: Non-existent Account":17.248,"Negative Test: Empty Email":107.818,"Negative Test: Empty Password":108.178,"Negative Test: Both Empty":107.088,"Negative Test: Special Characters Email":17.236,"Positive Test: Valid Login":102.391
 };
 </script>
 <div class="row">
@@ -722,7 +834,7 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 1,
+passParent: 8,
 failParent: 0,
 warningParent: 0,
 skipParent: 0,
@@ -739,11 +851,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 31,
+passEvents: 16,
 failEvents: 0,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 40
+infoEvents: 37
 };
 </script>        </div>
       </div>

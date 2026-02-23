@@ -70,40 +70,31 @@ public class BaseTest {
                 .timeouts()
                 .implicitlyWait(Duration.ofSeconds(implicitWait));
 
-        // CONDITIONAL RESET: Skip resetAppToHomePage for tests with custom navigation
-        // EditProfileTest: manages Sign In -> Home -> Edit Profile flow
-        // SignInTest: needs to start from Sign In page (logged out state)
-        // SignUpTest: needs to start from Sign Up page
+        // FORCE OPEN APP: Ensure app is active and in foreground before ANY test starts
+        forceOpenApp();
+
+        // LOGGING: Inform about test start
         String testClassName = method.getDeclaringClass().getSimpleName();
-        if (!"EditProfileTest".equals(testClassName) &&
-                !"SignInTest".equals(testClassName) &&
-                !"SignInTest".equals(testClassName)) {
-            // RESET APP STATE: Navigate to Home page before each test
-            // This ensures test independence without requiring re-login
-            resetAppToHomePage();
-        } else {
-            System.out.println("⏭ Skipping resetAppToHomePage for " + testClassName + " - uses custom navigation");
-        }
+        System.out.println("🚀 Starting test: " + testClassName + "." + method.getName());
     }
 
     /**
-     * Reset app state by restarting the app
-     * This ensures each test starts from a fresh state at the Main Activity
+     * Force open application and bring to foreground
      */
-    private void resetAppToHomePage() {
+    private void forceOpenApp() {
         try {
             String appPackage = ConfigReader.getProperty("appPackage");
-            // Terminate and Activate ensures a fresh start of the main activity
-            ((AndroidDriver) driver).terminateApp(appPackage);
-            Thread.sleep(500);
+            
+            // Bring app to foreground if already running, or launch it
+            // Using activateApp ensures it's opened even if session was already active
             ((AndroidDriver) driver).activateApp(appPackage);
+            
+            // Wait for app to be ready and visible
+            Thread.sleep(4000); 
 
-            // Wait for app to load
-            Thread.sleep(3000);
-
-            System.out.println("✓ App state reset: App restarted successfully");
+            System.out.println("✓ App force opened and brought to foreground");
         } catch (Exception e) {
-            System.out.println("⚠ Warning: App state reset failed: " + e.getMessage());
+            System.out.println("⚠ Warning: Force open app failed: " + e.getMessage());
         }
     }
 

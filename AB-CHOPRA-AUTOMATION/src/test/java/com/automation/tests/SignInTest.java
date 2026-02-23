@@ -3,12 +3,9 @@ package com.automation.tests;
 import com.automation.base.BaseTest;
 import com.automation.pages.SignInPage;
 import com.automation.pages.HomePage;
+import com.automation.pages.LinkDevicesPage;
 import com.automation.pages.ProfilePage;
 import com.aventstack.extentreports.Status;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -162,7 +159,7 @@ public class SignInTest extends BaseTest {
 
         // Use valid credentials
         String validEmail = "ramesh@navadhiti.com";
-        String validPassword = "Testing@2025";
+        String validPassword = "Human@2026";
 
         signInPage.enterEmail(validEmail);
         signInPage.enterPassword(validPassword);
@@ -170,93 +167,65 @@ public class SignInTest extends BaseTest {
 
         signInPage.clickContinue();
         test.log(Status.INFO, "Clicked Continue button");
+        Thread.sleep(3000);
 
-        // Wait for navigation to LINK DEVICES page
-        // User requested approx 5 sec wait/check for "LINK DEVICES"
-        boolean isLinkDevicesPage = signInPage.isLinkDevicesDisplayed();
+        // Step 1: Click SKIP FOR NOW (Pattern from EditProfileTest)
+        // This handles Link Devices / 2FA / any interstitial screen
+        try {
+            LinkDevicesPage linkDevicesPage = new LinkDevicesPage(driver);
+            linkDevicesPage.clickSkipForNow();
+            test.log(Status.INFO, "Clicked SKIP FOR NOW");
+            Thread.sleep(2000);
+        } catch (Exception ignored) {
+            test.log(Status.INFO, "SKIP FOR NOW not present — continuing");
+        }
 
-        if (isLinkDevicesPage) {
-            // PASS: Successfully navigated to Link Devices page
-            test.log(Status.PASS, "✓ 'LINK DEVICES' page displayed - Login successful");
-            test.log(Status.PASS, "Test PASSED: Valid credentials accepted and navigated to next screen");
-
-            /*
-             * AUTO-RESET: Perform Logout
-             * This ensures the app returns to Sign In page for subsequent tests/runs.
-             */
-            test.log(Status.INFO, "initiating Auto-Reset (Logout)...");
-
-            // 1. Click "SKIP FOR NOW"
-            signInPage.clickSkipForNow();
-
-            // 2. Wait for "DAILY PRIORITY" (Home Page verification)
-            HomePage homePage = new HomePage(driver);
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            try {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//android.view.View[@content-desc='DAILY PRIORITY']")));
-            } catch (Exception e) {
-                test.log(Status.WARNING, "DAILY PRIORITY not found after skipping link devices");
+        // Step 2-4: Wait for Home page (up to 15s) and navigate
+        HomePage homePage = new HomePage(driver);
+        boolean homeFound = false;
+        for (int i = 0; i < 5; i++) {
+            if (homePage.isHomePageDisplayed()) {
+                homeFound = true;
+                break;
             }
+            test.log(Status.INFO, "Waiting for Home page... (Attempt " + (i + 1) + ")");
+            Thread.sleep(3000); 
+        }
 
-            // 3. Click "WELLBEING DASHBOARD HOME"
-            try {
-                WebElement dashboardBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.view.View[@content-desc='WELLBEING DASHBOARD HOME']")));
-                dashboardBtn.click();
-            } catch (Exception e) {
-                // Fallback to existing locator if specific one fails, or log warning
-                homePage.clickWellbeingDashboard();
-            }
-
-            // 4. Click "PROFILE"
-            try {
-                WebElement profileBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.view.View[@content-desc='PROFILE']")));
-                profileBtn.click();
-            } catch (Exception e) {
-                test.log(Status.WARNING, "PROFILE button not found");
-            }
-
-            // 5. Click "LOG OUT"
-            ProfilePage profilePage = new ProfilePage(driver);
-            try {
-                WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.view.View[@content-desc='LOG OUT']")));
-                logoutBtn.click();
-            } catch (Exception e) {
-                test.log(Status.WARNING, "LOG OUT button not found");
-            }
-
-            // 6. Click "YES"
-            try {
-                WebElement yesBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.view.View[@content-desc='YES']")));
-                yesBtn.click();
-            } catch (Exception e) {
-                test.log(Status.WARNING, "YES button not found");
-            }
-
-            // 7. Wait 2 sec and verify logout
+        if (homeFound) {
+            test.log(Status.PASS, "✓ Home page displayed successfully");
+            
+            // Step 3: Wellbeing Dashboard
+            homePage.clickWellbeingDashboard();
+            test.log(Status.INFO, "Clicked Wellbeing Dashboard menu");
             Thread.sleep(2000);
 
-            if (signInPage.isOnSignInPage()) {
-                test.log(Status.INFO, "✓ Auto-Reset Successful: App logged out and returned to Sign In page");
+            // Step 4: Click PROFILE
+            homePage.clickProfile();
+            test.log(Status.INFO, "Clicked PROFILE button");
+            Thread.sleep(2000);
+            
+            // Step 5: Click LOG OUT
+            ProfilePage profilePage = new ProfilePage(driver);
+            profilePage.clickLogout();
+            test.log(Status.INFO, "Clicked LOG OUT button");
+            Thread.sleep(1000);
+
+            // Step 6: Click YES in logout confirmation
+            profilePage.clickYes();
+            test.log(Status.INFO, "Clicked YES for logout confirmation");
+            Thread.sleep(2000);
+
+            // Step 7: Final Verification - SIGN IN page
+            if (profilePage.isSignInPageDisplayed()) {
+                test.log(Status.PASS, "✓ SIGN IN page displayed - Test Passed");
             } else {
-                test.log(Status.WARNING, "⚠ Auto-Reset Incomplete: Could not verify return to Sign In page");
+                test.log(Status.FAIL, "✗ Not on Sign In page after logout");
+                Assert.fail("Test failed: SIGN IN page not displayed after logout");
             }
-
         } else {
-            // FAIL: Did not navigate to Link Devices page
-            test.log(Status.FAIL, "✗ Failed to navigate to 'LINK DEVICES' page");
-
-            // Check if validation error is present to give more context
-            if (signInPage.isAnyValidationVisible()) {
-                String msg = signInPage.getValidationMessage();
-                test.log(Status.INFO, "Validation error detected: " + msg);
-            }
-
-            Assert.fail("Expected to navigate to 'LINK DEVICES' page after valid login");
+            test.log(Status.FAIL, "Home page not detected after 15s timeout");
+            Assert.fail("Test failed: Home page not reached after login");
         }
     }
 }
