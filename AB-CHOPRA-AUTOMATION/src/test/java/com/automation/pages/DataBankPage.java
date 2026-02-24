@@ -81,7 +81,6 @@ public class DataBankPage {
 
     // Test Case 3 - Specific Steps
     private final String devicesXpath = "//android.view.View[@content-desc=\"DEVICES\"]";
-    private final String linkDeviceButtonXpath = "//android.widget.Button[@content-desc=\"LINK DEVICE\"]";
     private final String ultrahumanButtonXpath = "//android.view.View[contains(@content-desc, 'Ultrahuman') and contains(@content-desc, 'Sync Health data')]/android.widget.ImageView";
     private final String connectWithUltrahumanDialogXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View";
     private final String emailFieldXpath = "//android.widget.EditText";
@@ -564,21 +563,6 @@ public class DataBankPage {
             System.out.println("✓ Step 4: Clicked 'DEVICES'");
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to click DEVICES in Step 4", e);
-        }
-    }
-
-    /**
-     * TEST CASE 3 - STEP 5 (also used in Step 14):
-     * Click "LINK DEVICE" button
-     */
-    public void clickLinkDeviceButton() {
-        try {
-            WebElement linkDeviceButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(linkDeviceButtonXpath)));
-            linkDeviceButton.click();
-            System.out.println("✓ Clicked 'LINK DEVICE' button");
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Failed to click LINK DEVICE button", e);
         }
     }
 
