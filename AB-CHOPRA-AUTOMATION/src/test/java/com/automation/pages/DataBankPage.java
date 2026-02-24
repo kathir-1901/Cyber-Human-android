@@ -82,7 +82,7 @@ public class DataBankPage {
     // Test Case 3 - Specific Steps
     private final String devicesXpath = "//android.view.View[@content-desc=\"DEVICES\"]";
     private final String linkDeviceButtonXpath = "//android.widget.Button[@content-desc=\"LINK DEVICE\"]";
-    private final String ultrahumanButtonXpath = "//android.view.View[@content-desc=\"ULTRAHUMAN\"]";
+    private final String ultrahumanButtonXpath = "//android.view.View[contains(@content-desc, 'Ultrahuman') and contains(@content-desc, 'Sync Health data')]/android.widget.ImageView";
     private final String connectWithUltrahumanDialogXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View";
     private final String emailFieldXpath = "//android.widget.EditText";
     private final String scrollViewXpath = "//android.widget.ScrollView";

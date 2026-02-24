@@ -513,11 +513,6 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 4: DEVICES clicked");
         Thread.sleep(2000); // Wait for UI to update after clicking DEVICES
 
-        // ✅ TEST CASE 3 - STEP 5: Click LINK DEVICE button
-        test.log(Status.INFO, "Step 5: Clicking LINK DEVICE button");
-        dataBankPage.clickLinkDeviceButton();
-        test.log(Status.PASS, "✓ Step 5: LINK DEVICE button clicked");
-
         // ✅ TEST CASE 3 - NEW STEP 6: Click ULTRAHUMAN button
         test.log(Status.INFO, "Step 6: Clicking ULTRAHUMAN button");
         dataBankPage.clickUltrahumanButton();
