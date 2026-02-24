@@ -79,7 +79,7 @@ public class AbChopraHousePage {
     private final String newFileIconXpath = "//android.widget.ImageView[@content-desc=\"New File\"]";
 
     // Step 19 (second): File name input
-    private final String fileNameInputXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.view.View/android.view.View/android.widget.EditText";
+    private final String fileNameInputXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.EditText[2]";
 
     // Step 20: Close icon
     private final String closeIconXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.ImageView";
@@ -308,7 +308,7 @@ public class AbChopraHousePage {
             WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(searchBoxXpath)));
             searchBox.click();
             searchBox.clear();
-            searchBox.sendKeys("love");
+            searchBox.sendKeys("love & unity");
         } catch (TimeoutException e) {
             throw new RuntimeException("Search box not found", e);
         }
@@ -328,15 +328,40 @@ public class AbChopraHousePage {
 
     /**
      * Step 13 (new): Verify Love & Unity article is displayed
+     * Uses a robust multi-strategy fallback approach to handle newline variability:
+     * 1. contains() XPath for key terms
+     * 2. Exact match using the android.widget.ImageView class seen in XML/JSON
+     * 3. Accessibility ID match
      */
     public boolean isLoveArticleDisplayed() {
         try {
-            WebElement article = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(
-                            By.xpath("//android.view.View[@content-desc='Love & Unity\nAudio \n 8 min']")));
-            return article.isDisplayed();
+            // Strategy 1: Robust contains() XPath (Handles \n or space variability)
+            try {
+                WebElement article = wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath("//android.widget.ImageView[contains(@content-desc, 'Love & Unity') and contains(@content-desc, 'min')]")));
+                if (article.isDisplayed()) return true;
+            } catch (Exception ignored) {
+            }
+
+            // Strategy 2: Exact match based on latest JSON dump (Note: appium/android might use \n)
+            try {
+                WebElement article = driver
+                        .findElement(By.xpath("//android.widget.ImageView[@content-desc='Love & Unity\nAudio \n 8 min']"));
+                if (article.isDisplayed()) return true;
+            } catch (Exception ignored) {
+            }
+
+            // Strategy 3: Accessibility ID
+            try {
+                WebElement article = driver.findElement(
+                        io.appium.java_client.AppiumBy.accessibilityId("Love & Unity\nAudio \n 8 min"));
+                if (article.isDisplayed()) return true;
+            } catch (Exception ignored) {
+            }
+
+            System.out.println("DEBUG: All fallback strategies failed for Love & Unity article");
+            return false;
         } catch (Exception e) {
-            System.out.println("Love & Unity article not found. Error: " + e.getMessage());
             return false;
         }
     }
@@ -483,15 +508,21 @@ public class AbChopraHousePage {
      */
     public void clickVideoItem() {
         try {
-            // Locate radio button relative to article title
-            // Radio button has clickable='true' and focusable='true' but no content-desc
+            // Updated XPath provided by user for the radio button inside the article card
             By articleRadio = By.xpath(
-                    "//android.view.View[contains(@content-desc,'The Timeless Dance')]" +
-                            "//android.view.View[@clickable='true' and @focusable='true']");
+                    "//android.widget.ImageView[@content-desc=\"The Timeless Dance: Cultivating a Youthful Mind and Radiant Appearance Article 4 min\"]/android.view.View");
             WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(articleRadio));
             radioButton.click();
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Article radio button not found", e);
+        } catch (Exception e) {
+            // Fallback: try contains() approach if exact match fails
+            try {
+                By fallbackRadio = By.xpath(
+                        "//android.widget.ImageView[contains(@content-desc,'The Timeless Dance')]//android.view.View");
+                WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(fallbackRadio));
+                radioButton.click();
+            } catch (Exception e2) {
+                throw new RuntimeException("Article radio button not found with primary or fallback XPath", e2);
+            }
         }
     }
 

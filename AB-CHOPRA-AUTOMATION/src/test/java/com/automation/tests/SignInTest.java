@@ -11,8 +11,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class SignInTest extends BaseTest {
 
     /**
@@ -148,7 +146,6 @@ public class SignInTest extends BaseTest {
 
     /**
      * POSITIVE LOGIN TEST (Optional - for comparison)
-     * This test expects successful login without validation errors
      */
     @Test
     public void testPositiveSignIn() throws InterruptedException {
@@ -189,12 +186,12 @@ public class SignInTest extends BaseTest {
                 break;
             }
             test.log(Status.INFO, "Waiting for Home page... (Attempt " + (i + 1) + ")");
-            Thread.sleep(3000); 
+            Thread.sleep(3000);
         }
 
         if (homeFound) {
             test.log(Status.PASS, "✓ Home page displayed successfully");
-            
+
             // Step 3: Wellbeing Dashboard
             homePage.clickWellbeingDashboard();
             test.log(Status.INFO, "Clicked Wellbeing Dashboard menu");
@@ -204,7 +201,7 @@ public class SignInTest extends BaseTest {
             homePage.clickProfile();
             test.log(Status.INFO, "Clicked PROFILE button");
             Thread.sleep(2000);
-            
+
             // Step 5: Click LOG OUT
             ProfilePage profilePage = new ProfilePage(driver);
             profilePage.clickLogout();

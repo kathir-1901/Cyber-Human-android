@@ -108,6 +108,21 @@ public class HomePage {
     }
 
     /**
+     * Wait for Home page to be displayed with a longer timeout.
+     * Useful at the start of tests to ensure app is ready.
+     */
+    public void waitForHomePage() {
+        try {
+            System.out.println("⏳ Waiting for Home Page (DAILY PRIORITY heading)...");
+            WebDriverWait longerWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            longerWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(dailyPriorityHeadingXpath)));
+            System.out.println("✅ Home Page is displayed!");
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Home page (DAILY PRIORITY) not displayed after 30 seconds wait", e);
+        }
+    }
+
+    /**
      * Navigate to logout from Home page.
      * This is a helper method for SignInTest to navigate from logged-in state to
      * Sign In page.

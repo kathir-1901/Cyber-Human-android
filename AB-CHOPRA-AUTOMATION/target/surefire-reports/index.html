@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.SignUpTest" class="method navigator-link" hash-for-method="testPositiveSignUp">testPositiveSignUp</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.SignInTest" class="method navigator-link" hash-for-method="testPositiveSignIn">testPositiveSignIn</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Surefire_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.automation.tests.SignUpTest</span>
+              <span class="class-name">com.automation.tests.SignInTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testPositiveSignUp">
-                  </a> <!-- testPositiveSignUp -->
-                  <span class="method-name">testPositiveSignUp</span>
+                  <a name="testPositiveSignIn">
+                  </a> <!-- testPositiveSignIn -->
+                  <span class="method-name">testPositiveSignIn</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -149,7 +149,7 @@
       &lt;/method-selector&gt;
     &lt;/method-selectors&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.automation.tests.SignUpTest&quot;/&gt;
+      &lt;class name=&quot;com.automation.tests.SignInTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -191,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testPositiveSignUp')
-data.setCell(0, 2, 'com.automation.tests.SignUpTest')
-data.setCell(0, 3, 87227);
+data.setCell(0, 1, 'testPositiveSignIn')
+data.setCell(0, 2, 'com.automation.tests.SignInTest')
+data.setCell(0, 3, 41102);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 41 seconds</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -217,9 +217,9 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.automation.tests.SignUpTest</span>
+              <span class="ignored-class-name">com.automation.tests.SignInTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">testNegativeSignUp</span>
+                <span class="ignored-method-name">testNegativeSignIn</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -231,26 +231,30 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.automation.tests.SignUpTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.automation.tests.SignInTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setupReport</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.SignUpTest.testPositiveSignUp() throws java.lang.InterruptedExcepti...)</span>
-                <span class="method-start">334 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.SignInTest.testPositiveSignIn() throws java.lang.InterruptedExcepti...)</span>
+                <span class="method-start">165 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">navigateToSignInPageBeforeTest</span>
+                <span class="method-start">15297 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testPositiveSignUp</span>
-                <span class="method-start">16090 ms</span>
+                <span class="method-name">testPositiveSignIn</span>
+                <span class="method-start">15959 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testPositiveSignUp status=SUCCESS method=SignUpTest.testPositiveSignUp()[pri:0, ins...)</span>
-                <span class="method-start">103323 ms</span>
+                <span class="method-name">tearDown([TestResult name=testPositiveSignIn status=SUCCESS method=SignInTest.testPositiveSignIn()[pri:0, ins...)</span>
+                <span class="method-start">57063 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownReport</span>
-                <span class="method-start">106394 ms</span>
+                <span class="method-start">60127 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

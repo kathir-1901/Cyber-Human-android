@@ -55,14 +55,15 @@ public class DataBankTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         DataBankPage dataBankPage = new DataBankPage(driver);
 
-        // ✅ COMMON STEP 1: Verify DAILY PRIORITY heading is displayed on home page
-        test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
-        boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
-        if (!isHomePageDisplayed) {
-            test.log(Status.FAIL, "DAILY PRIORITY heading not found on home page");
+        // u2705 COMMON STEP 1: Wait for Home Page and verify DAILY PRIORITY heading
+        test.log(Status.INFO, "Step 1: Waiting for home page to load");
+        try {
+            homePage.waitForHomePage();
+            test.log(Status.PASS, "u2713 Step 1: Home page is displayed");
+        } catch (Exception e) {
+            test.log(Status.FAIL, "Home page validation failed: " + e.getMessage());
             Assert.fail("Home page validation failed - DAILY PRIORITY heading not displayed");
         }
-        test.log(Status.PASS, "✓ Step 1: DAILY PRIORITY heading is displayed on home page");
 
         // ✅ COMMON STEP 2: Click Wellbeing Dashboard (if not already there)
         test.log(Status.INFO, "Step 2: Clicking Wellbeing Dashboard");
@@ -318,14 +319,15 @@ public class DataBankTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         DataBankPage dataBankPage = new DataBankPage(driver);
 
-        // ✅ COMMON STEP 1: Verify DAILY PRIORITY heading is displayed on home page
-        test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
-        boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
-        if (!isHomePageDisplayed) {
-            test.log(Status.FAIL, "DAILY PRIORITY heading not found on home page");
+        // u2705 COMMON STEP 1: Wait for Home Page and verify DAILY PRIORITY heading
+        test.log(Status.INFO, "Step 1: Waiting for home page to load");
+        try {
+            homePage.waitForHomePage();
+            test.log(Status.PASS, "u2713 Step 1: Home page is displayed");
+        } catch (Exception e) {
+            test.log(Status.FAIL, "Home page validation failed: " + e.getMessage());
             Assert.fail("Home page validation failed - DAILY PRIORITY heading not displayed");
         }
-        test.log(Status.PASS, "✓ Step 1: DAILY PRIORITY heading is displayed on home page");
 
         // ✅ COMMON STEP 2: Click Wellbeing Dashboard (if not already there)
         test.log(Status.INFO, "Step 2: Clicking Wellbeing Dashboard");
@@ -476,14 +478,15 @@ public class DataBankTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         DataBankPage dataBankPage = new DataBankPage(driver);
 
-        // ✅ COMMON STEP 1: Verify DAILY PRIORITY heading is displayed on home page
-        test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
-        boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
-        if (!isHomePageDisplayed) {
-            test.log(Status.FAIL, "DAILY PRIORITY heading not found on home page");
+        // u2705 COMMON STEP 1: Wait for Home Page and verify DAILY PRIORITY heading
+        test.log(Status.INFO, "Step 1: Waiting for home page to load");
+        try {
+            homePage.waitForHomePage();
+            test.log(Status.PASS, "u2713 Step 1: Home page is displayed");
+        } catch (Exception e) {
+            test.log(Status.FAIL, "Home page validation failed: " + e.getMessage());
             Assert.fail("Home page validation failed - DAILY PRIORITY heading not displayed");
         }
-        test.log(Status.PASS, "✓ Step 1: DAILY PRIORITY heading is displayed on home page");
 
         // ✅ COMMON STEP 2: Click Wellbeing Dashboard (if not already there)
         test.log(Status.INFO, "Step 2: Clicking Wellbeing Dashboard");
@@ -634,14 +637,19 @@ public class DataBankTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         DataBankPage dataBankPage = new DataBankPage(driver);
 
-        // ✅ COMMON STEP 1: Verify DAILY PRIORITY heading is displayed on home page
-        test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
-        boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
-        if (!isHomePageDisplayed) {
-            test.log(Status.INFO,
-                    "DAILY PRIORITY heading not found - app is already on Data Bank page from previous test, continuing...");
-        } else {
-            test.log(Status.PASS, "✓ Step 1: DAILY PRIORITY heading is displayed on home page");
+        // ✅ COMMON STEP 1: Wait for Home Page and verify DAILY PRIORITY heading
+        test.log(Status.INFO, "Step 1: Waiting for home page to load");
+        try {
+            homePage.waitForHomePage();
+            test.log(Status.PASS, "✓ Step 1: Home page is displayed");
+        } catch (Exception e) {
+            // Special handling for Case 4 which might start on Data Bank page
+            if (dataBankPage.isAlreadyOnDataBankPage()) {
+                test.log(Status.INFO, "Home page heading not found, but already on Data Bank page. Continuing...");
+            } else {
+                test.log(Status.FAIL, "Home page validation failed: " + e.getMessage());
+                Assert.fail("Home page validation failed - DAILY PRIORITY heading not displayed");
+            }
         }
 
         // ✅ COMMON STEP 2: Click Wellbeing Dashboard (if not already there)

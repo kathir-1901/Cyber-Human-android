@@ -67,6 +67,7 @@ public class AbChopraHouseTest extends BaseTest {
                 } else {
                         test.log(Status.PASS, "✓ Step 1: DAILY PRIORITY heading is displayed on home page");
                 }
+                Thread.sleep(3000);
 
                 // ✅ COMMON STEP 2: Click Wellbeing Dashboard (if not already there)
                 test.log(Status.INFO, "Step 2: Clicking Wellbeing Dashboard");
@@ -87,7 +88,7 @@ public class AbChopraHouseTest extends BaseTest {
                 test.log(Status.INFO, "Step 4: Clicking DISCOVER");
                 abChopraHousePage.clickDiscover();
                 test.log(Status.PASS, "✓ Step 4: DISCOVER clicked");
-                Thread.sleep(3000);
+                Thread.sleep(9000);
 
                 // ✅ STEP 6: Swipe up once (includes 2-second wait)
                 test.log(Status.INFO, "Step 6: Swiping up once");

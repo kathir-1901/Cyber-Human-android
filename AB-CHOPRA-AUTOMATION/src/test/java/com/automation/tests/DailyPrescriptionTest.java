@@ -17,14 +17,15 @@ public class DailyPrescriptionTest extends BaseTest {
         DailyPrescriptionPage dailyPrescriptionPage = new DailyPrescriptionPage(driver);
 
         try {
-            // Step 1: Verify DAILY PRIORITY heading is displayed on home page
-            test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
-            boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
-            if (!isHomePageDisplayed) {
-                test.log(Status.FAIL, "DAILY PRIORITY heading not found on home page");
+            // ✅ COMMON STEP 1: Wait for Home Page and verify DAILY PRIORITY heading
+            test.log(Status.INFO, "Step 1: Waiting for home page to load");
+            try {
+                homePage.waitForHomePage();
+                test.log(Status.PASS, "✓ Step 1: Home page is displayed");
+            } catch (Exception e) {
+                test.log(Status.FAIL, "Home page validation failed: " + e.getMessage());
                 Assert.fail("Home page validation failed - DAILY PRIORITY heading not displayed");
             }
-            test.log(Status.PASS, "✓ DAILY PRIORITY heading is displayed on home page");
 
             // Step 2: Click Wellbeing Dashboard (if not already there)
             test.log(Status.INFO, "Step 2: Clicking Wellbeing Dashboard");
