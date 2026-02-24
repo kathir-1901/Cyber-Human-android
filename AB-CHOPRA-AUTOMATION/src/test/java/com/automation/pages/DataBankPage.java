@@ -68,12 +68,12 @@ public class DataBankPage {
     // Test Case 2 - Specific Steps
     private final String uploadDataXpath = "//android.view.View[@content-desc=\"UPLOAD DATA\"]";
     private final String uploadReportButtonXpath = "//android.widget.Button[@content-desc=\"UPLOAD REPORT\"]";
-    private final String uploadFailedDialogXpath = "//android.view.View[@content-desc=\"UPLOAD FAILED\"]";
-    private final String uploadFailedMessageXpath = "//android.view.View[@content-desc=\"Wrong file type chosen. Only allowed type is pdf.\"]";
+    private final String uploadFailedDialogXpath = "//android.view.View[@content-desc=\"FILE NOT SUPPORTED\"]";
+    private final String uploadFailedMessageXpath = "//android.view.View[@content-desc=\"Please make sure to upload the original PDF report.\"]";
     private final String okButtonXpath = "//android.widget.Button[@content-desc=\"OK\"]";
     private final String uploadSuccessfulDialogXpath = "//android.view.View[@content-desc=\"UPLOAD SUCCESSFUL\"]";
-    private final String uploadSuccessMessageXpath = "//android.view.View[@content-desc=\"Your document has been successfully uploaded\"]";
-    private final String removeButtonXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]";
+    private final String uploadSuccessMessageXpath = "//android.view.View[@content-desc=\"Your document has been successfully uploaded.\"]";
+    private final String removeButtonXpath = "//android.widget.ScrollView/android.widget.ImageView[4]";
     private final String areYouSureDialogXpath = "//android.view.View[@content-desc=\"ARE YOU SURE?\"]";
     private final String yesButtonXpath = "//android.widget.Button[@content-desc=\"YES\"]";
     private final String deleteSuccessfulDialogXpath = "//android.view.View[@content-desc=\"DELETE SUCCESSFUL\"]";
@@ -303,7 +303,7 @@ public class DataBankPage {
 
     /**
      * TEST CASE 2 - STEP 9:
-     * Validate UPLOAD FAILED dialog is shown and capture error message
+     * Validate FILE NOT SUPPORTED dialog is shown and capture error message
      * 
      * @return The error message displayed in the dialog
      */
@@ -314,9 +314,9 @@ public class DataBankPage {
                     ExpectedConditions.presenceOfElementLocated(By.xpath(uploadFailedDialogXpath)));
 
             if (uploadFailedDialog.isDisplayed()) {
-                System.out.println("✓ Step 9: UPLOAD FAILED dialog is displayed");
+                System.out.println("✓ Step 9: FILE NOT SUPPORTED dialog is displayed");
             } else {
-                throw new RuntimeException("UPLOAD FAILED dialog is not displayed");
+                throw new RuntimeException("FILE NOT SUPPORTED dialog is not displayed");
             }
 
             // Capture the error message
@@ -328,7 +328,7 @@ public class DataBankPage {
             return message;
 
         } catch (TimeoutException e) {
-            throw new RuntimeException("Failed to validate UPLOAD FAILED dialog in Step 9", e);
+            throw new RuntimeException("Failed to validate FILE NOT SUPPORTED dialog in Step 9", e);
         }
     }
 

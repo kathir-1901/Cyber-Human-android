@@ -373,15 +373,15 @@ public class DataBankTest extends BaseTest {
         dataBankPage.uploadWrongFormatFile();
         test.log(Status.INFO, "✓ Step 8: Wrong format file upload attempted");
 
-        // ✅ TEST CASE 2 - STEP 9: Validate UPLOAD FAILED dialog and capture error
+        // ✅ TEST CASE 2 - STEP 9: Validate FILE NOT SUPPORTED dialog and capture error
         // message
-        test.log(Status.INFO, "Step 9: Validating UPLOAD FAILED dialog");
+        test.log(Status.INFO, "Step 9: Validating FILE NOT SUPPORTED dialog");
         String errorMessage = dataBankPage.validateUploadFailedDialog();
-        test.log(Status.PASS, "✓ Step 9: UPLOAD FAILED dialog validated");
+        test.log(Status.PASS, "✓ Step 9: FILE NOT SUPPORTED dialog validated");
         test.log(Status.INFO, "📋 Error Message: " + errorMessage);
 
         // Verify the error message is correct
-        Assert.assertEquals(errorMessage, "Wrong file type chosen. Only allowed type is pdf.",
+        Assert.assertEquals(errorMessage, "Please make sure to upload the original PDF report.",
                 "Error message should indicate wrong file type");
         test.log(Status.PASS, "✓ Verified: Correct error message displayed");
 
@@ -418,7 +418,7 @@ public class DataBankTest extends BaseTest {
         test.log(Status.INFO, "📋 Success Message: " + successMessage);
 
         // Verify the success message is correct
-        Assert.assertEquals(successMessage, "Your document has been successfully uploaded",
+        Assert.assertEquals(successMessage, "Your document has been successfully uploaded.",
                 "Success message should confirm successful upload");
         test.log(Status.PASS, "✓ Step 14: Verified correct success message displayed");
 
