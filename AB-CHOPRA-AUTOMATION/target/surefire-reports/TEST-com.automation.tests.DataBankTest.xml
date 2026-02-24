@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.automation.tests.DataBankTest" time="99.177" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.automation.tests.DataBankTest" time="514.138" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,9 +13,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire/surefirebooter-20260224131937496_3.jar /home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire 2026-02-24T13-19-37_406-jvmRun1 surefire-20260224131937496_1tmp surefire_0-20260224131937496_2tmp"/>
+    <property name="sun.java.command" value="/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire/surefirebooter-20260224175538252_3.jar /home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire 2026-02-24T17-55-38_180-jvmRun1 surefire-20260224175538252_1tmp surefire_0-20260224175538252_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="DataBankTest#testDataBank_Case2"/>
+    <property name="test" value="DataBankTest"/>
     <property name="surefire.test.class.path" value="/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/test-classes:/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/classes:/home/nd/.m2/repository/io/appium/java-client/8.6.0/java-client-8.6.0.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-api/4.13.0/selenium-api-4.13.0.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/4.13.0/selenium-remote-driver-4.13.0.jar:/home/nd/.m2/repository/com/google/auto/service/auto-service-annotations/1.1.1/auto-service-annotations-1.1.1.jar:/home/nd/.m2/repository/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.jar:/home/nd/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/home/nd/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/home/nd/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/home/nd/.m2/repository/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.jar:/home/nd/.m2/repository/com/google/errorprone/error_prone_annotations/2.18.0/error_prone_annotations-2.18.0.jar:/home/nd/.m2/repository/com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar:/home/nd/.m2/repository/io/netty/netty-buffer/4.1.96.Final/netty-buffer-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-codec-http/4.1.96.Final/netty-codec-http-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-codec/4.1.96.Final/netty-codec-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-handler/4.1.96.Final/netty-handler-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-common/4.1.96.Final/netty-common-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.96.Final/netty-transport-classes-epoll-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-classes-kqueue/4.1.96.Final/netty-transport-classes-kqueue-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-native-epoll/4.1.96.Final/netty-transport-native-epoll-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.96.Final/netty-transport-native-kqueue-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.96.Final/netty-transport-native-unix-common-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport/4.1.96.Final/netty-transport-4.1.96.Final.jar:/home/nd/.m2/repository/io/netty/netty-resolver/4.1.96.Final/netty-resolver-4.1.96.Final.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-api/1.28.0/opentelemetry-api-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-context/1.28.0/opentelemetry-context-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-exporter-logging/1.28.0/opentelemetry-exporter-logging-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-metrics/1.28.0/opentelemetry-sdk-metrics-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-extension-incubator/1.28.0-alpha/opentelemetry-extension-incubator-1.28.0-alpha.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-logs/1.28.0/opentelemetry-sdk-logs-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-common/1.28.0/opentelemetry-sdk-common-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.28.0/opentelemetry-sdk-extension-autoconfigure-spi-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.28.0/opentelemetry-sdk-extension-autoconfigure-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-api-events/1.28.0-alpha/opentelemetry-api-events-1.28.0-alpha.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk-trace/1.28.0/opentelemetry-sdk-trace-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-sdk/1.28.0/opentelemetry-sdk-1.28.0.jar:/home/nd/.m2/repository/io/opentelemetry/opentelemetry-semconv/1.28.0-alpha/opentelemetry-semconv-1.28.0-alpha.jar:/home/nd/.m2/repository/net/bytebuddy/byte-buddy/1.14.5/byte-buddy-1.14.5.jar:/home/nd/.m2/repository/org/asynchttpclient/async-http-client/2.12.3/async-http-client-2.12.3.jar:/home/nd/.m2/repository/org/asynchttpclient/async-http-client-netty-utils/2.12.3/async-http-client-netty-utils-2.12.3.jar:/home/nd/.m2/repository/io/netty/netty-codec-socks/4.1.60.Final/netty-codec-socks-4.1.60.Final.jar:/home/nd/.m2/repository/io/netty/netty-handler-proxy/4.1.60.Final/netty-handler-proxy-4.1.60.Final.jar:/home/nd/.m2/repository/io/netty/netty-transport-native-epoll/4.1.60.Final/netty-transport-native-epoll-4.1.60.Final-linux-x86_64.jar:/home/nd/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.60.Final/netty-transport-native-kqueue-4.1.60.Final-osx-x86_64.jar:/home/nd/.m2/repository/com/typesafe/netty/netty-reactive-streams/2.0.4/netty-reactive-streams-2.0.4.jar:/home/nd/.m2/repository/com/sun/activation/jakarta.activation/1.2.2/jakarta.activation-1.2.2.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-http/4.13.0/selenium-http-4.13.0.jar:/home/nd/.m2/repository/dev/failsafe/failsafe/3.3.2/failsafe-3.3.2.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-json/4.13.0/selenium-json-4.13.0.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-manager/4.13.0/selenium-manager-4.13.0.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-os/4.13.0/selenium-os-4.13.0.jar:/home/nd/.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-support/4.13.0/selenium-support-4.13.0.jar:/home/nd/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/nd/.m2/repository/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar:/home/nd/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-java/4.16.1/selenium-java-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-chrome-driver/4.16.1/selenium-chrome-driver-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-chromium-driver/4.16.1/selenium-chromium-driver-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v118/4.16.1/selenium-devtools-v118-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v119/4.16.1/selenium-devtools-v119-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v120/4.16.1/selenium-devtools-v120-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v85/4.16.1/selenium-devtools-v85-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-edge-driver/4.16.1/selenium-edge-driver-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-firefox-driver/4.16.1/selenium-firefox-driver-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-ie-driver/4.16.1/selenium-ie-driver-4.16.1.jar:/home/nd/.m2/repository/org/seleniumhq/selenium/selenium-safari-driver/4.16.1/selenium-safari-driver-4.16.1.jar:/home/nd/.m2/repository/org/testng/testng/7.8.0/testng-7.8.0.jar:/home/nd/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/home/nd/.m2/repository/org/webjars/jquery/3.6.1/jquery-3.6.1.jar:/home/nd/.m2/repository/com/aventstack/extentreports/5.1.1/extentreports-5.1.1.jar:/home/nd/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.6/rxjava-3.1.6.jar:/home/nd/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/nd/.m2/repository/org/freemarker/freemarker/2.3.32/freemarker-2.3.32.jar:/home/nd/.m2/repository/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar:/home/nd/.m2/repository/commons-io/commons-io/2.15.1/commons-io-2.15.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/nd"/>
@@ -29,7 +29,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire/surefirebooter-20260224131937496_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/nd/Downloads/Cyber-Human-android/AB-CHOPRA-AUTOMATION/target/surefire/surefirebooter-20260224175538252_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.10+7-Ubuntu-124.04"/>
     <property name="user.name" value="nd"/>
@@ -55,7 +55,89 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDataBank_Case2" classname="com.automation.tests.DataBankTest" time="79.923">
+  <testcase name="testDataBank_Case1" classname="com.automation.tests.DataBankTest" time="271.639">
+    <system-out><![CDATA[✓ App force opened and brought to foreground
+🚀 Starting test: DataBankTest.testDataBank_Case1
+⏳ Waiting for Home Page (DAILY PRIORITY heading)...
+✅ Home Page is displayed!
+Wellbeing Dashboard clicked (newline content-desc)
+✓ Step 3: Clicked 'DATA BANK' button
+✓ Step 3: Verified 'DATA BANK' heading is displayed
+✓ Step 4: Clicked 'PACKAGES & PRICING'
+✓ Clicked 'CONTINUE' button
+✓ Step 6: Clicked checkbox
+✓ Clicked 'CONTINUE' button
+✓ Step 7: CONTINUE button clicked (Test)
+Step 8: Starting Verify BAG page...
+✓ Step 8: BAG page is displayed
+✓ Step 8: BAG page verified (Test)
+✓ Step 9: Clicked Essential Epigenetics dropdown
+✓ Step 10: Clicked PROCEED TO CHECKOUT button
+✓ Step 11: CHECKOUT page is displayed
+✓ Step 11: Delivery Address is displayed
+✓ Step 12: Filled name field with: Kathir
+Step 13: Clicking DOB field using generic '/' XPath...
+  ✓ Keyboard hidden
+✓ Step 13: DOB field clicked (Generic XPath)
+Successfully swiped SeekBar 1
+Successfully swiped SeekBar 2
+Successfully swiped SeekBar 3
+Clicked CONFIRM button on date picker
+Step 13: Selecting gender...
+  ✓ Keyboard hidden
+✓ Step 13: Gender element (or fallback) clicked
+✓ Step 13: Gender selection completed (Male)
+Step 14: Selecting country code using scroll-until-found...
+  - India button not visible, scrolling (Attempt 1)...
+  - India button not visible, scrolling (Attempt 2)...
+  - India button not visible, scrolling (Attempt 3)...
+  - India button not visible, scrolling (Attempt 4)...
+  - India button not visible, scrolling (Attempt 5)...
+  - India button not visible, scrolling (Attempt 6)...
+  - India button not visible, scrolling (Attempt 7)...
+✓ Step 14: India (+91) found and clicked
+✓ Step 14: Country code validation passed (+91)
+✓ Step 15: Filled phone number: 1234568
+  ✓ Keyboard hidden
+✓ Step 16: Filled address: 5/1029,KTG
+  ✓ Keyboard hidden
+✓ Step 17: Filled city: Coimbatore
+  ✓ Keyboard hidden
+✓ Step 18: Clicked country dropdown
+✓ Step 18: Selected India
+✓ Step 19: Filled postal code (wrong): kahsw
+  ✓ Keyboard hidden
+✓ Step 20: Clicked SAVE ADDRESS button
+✓ Step 21: Error dialog 'FIX THE FOLLOWING ERRORS' is displayed
+✓ Clicked 'OK' button
+Step 13: Clicking DOB field using generic '/' XPath...
+  ✓ Keyboard hidden
+✓ Step 13: DOB field clicked (Generic XPath)
+✓ Step 22: Clicked DOB field via Dynamic Bounds
+Step 22: Searching for any year < 2005...
+✓ Step 22: Found and selected year 1987
+✓ Step 22: Clicked CONFIRM button
+✓ Step 23: Filled correct phone number: 8072971990
+  ✓ Keyboard hidden
+✓ Step 24: Filled correct postal code: 643217
+  ✓ Keyboard hidden
+✓ Step 20: Clicked SAVE ADDRESS button
+✓ Step 26: Shipping Method is displayed
+✓ Step 27: Clicked PROCEED TO PAYMENT button
+✓ Step 27: Waited 9 seconds
+✓ Step 29: Clicked Close sheet
+✓ Step 30: PAYMENT ERROR dialog is displayed
+✓ Step 30: Payment error message captured: Please check your details and try again.
+✓ Step 32: Clicked Retry Payment button
+✓ Step 32: Waited 9 seconds
+✓ Step 32: Payment page is displayed
+]]></system-out>
+    <system-err><![CDATA[SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="testDataBank_Case2" classname="com.automation.tests.DataBankTest" time="79.827">
     <system-out><![CDATA[✓ App force opened and brought to foreground
 🚀 Starting test: DataBankTest.testDataBank_Case2
 ⏳ Waiting for Home Page (DAILY PRIORITY heading)...
@@ -95,9 +177,86 @@ Wellbeing Dashboard clicked (newline content-desc)
 ✓ Step 18: Delete success message captured: Your report has been successfully removed.
 ✓ Clicked 'OK' button
 ]]></system-out>
-    <system-err><![CDATA[SLF4J: No SLF4J providers were found.
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
-]]></system-err>
+  </testcase>
+  <testcase name="testDataBank_Case3" classname="com.automation.tests.DataBankTest" time="32.911">
+    <system-out><![CDATA[✓ App force opened and brought to foreground
+🚀 Starting test: DataBankTest.testDataBank_Case3
+⏳ Waiting for Home Page (DAILY PRIORITY heading)...
+✅ Home Page is displayed!
+Wellbeing Dashboard clicked (newline content-desc)
+✓ Step 3: Clicked 'DATA BANK' button
+✓ Step 3: Verified 'DATA BANK' heading is displayed
+✓ Step 4: Clicked 'DEVICES'
+✓ Clicked 'ULTRAHUMAN' button
+✓ Step 6: Clicked checkbox
+✓ Clicked 'CONTINUE' button
+✓ Step 8: CONNECT WITH ULTRAHUMAN dialog is displayed
+✓ Step 9: Entered invalid email: invalid.email
+✓ Step 9: Clicked ScrollView
+✓ Clicked 'VERIFY' button
+✓ Step 11: INVALID EMAIL ID dialog is displayed
+✓ Step 12: Error message captured: INVALID EMAIL ID
+✓ Clicked 'OK' button
+✓ Clicked 'ULTRAHUMAN' button
+✓ Step 6: Clicked checkbox
+✓ Clicked 'CONTINUE' button
+✓ Step 18: Entered valid email: valid@example.com
+✓ Step 18: Clicked ScrollView
+✓ Clicked 'VERIFY' button
+✓ Step 20: DEVICE LINKED dialog is displayed
+✓ Step 21: Success message captured: Your device has been successfully linked.
+✓ Clicked 'OK' button
+]]></system-out>
+  </testcase>
+  <testcase name="testDataBank_Case4" classname="com.automation.tests.DataBankTest" time="61.0">
+    <system-out><![CDATA[✓ App force opened and brought to foreground
+🚀 Starting test: DataBankTest.testDataBank_Case4
+⏳ Waiting for Home Page (DAILY PRIORITY heading)...
+✅ Home Page is displayed!
+Wellbeing Dashboard clicked (newline content-desc)
+✓ Step 3: Clicked 'DATA BANK' button
+✓ Step 3: Verified 'DATA BANK' heading is displayed
+✓ Clicked 'REPORTS'
+✓ Step 5: Clicked 'BLOOD REPORT'
+✓ Step 5: Verified 'BLOOD REPORT' page is displayed
+✓ Clicked 'HIGH PRIORITY' filter
+✓ Clicked 'MEDIUM PRIORITY' filter
+✓ Clicked 'LOW PRIORITY' filter
+✓ Clicked 'RENAL' dropdown
+✓ Clicked 'HIGH PRIORITY' filter
+✓ Verified 'Creatinine High Priority' is displayed
+✓ Clicked 'MEDIUM PRIORITY' filter
+✓ Verified 'Bun Medium Priority' is displayed
+✓ Clicked 'LOW PRIORITY' filter
+✓ Verified 'Bun/creatinine Low Priority' is displayed
+✓ Clicked 'Bun Medium Priority' (1st time)
+✓ Clicked 'Bun' (2nd time)
+✓ Clicked 'Creatinine High Priority' (1st time)
+✓ Clicked 'Creatinine' (2nd time)
+✓ Clicked 'Bun/creatinine Low Priority' (1st time)
+✓ Clicked 'Bun/creatinine' (2nd time)
+✓ Clicked 'Egfr Medium Priority' (1st time)
+✓ Clicked 'Egfr' (2nd time)
+✓ Swiped up once
+✓ Clicked back button
+✓ Clicked 'REPORTS'
+✓ Step 9: Clicked 'DNA REPORT'
+✓ Step 9: Verified 'DNA REPORT' page is displayed
+✓ Step 10: Clicked 'PURCHASE' button
+✓ Step 10: Verified 'PACKAGES & PRICING' page is displayed
+✓ Clicked back button (1st time)
+✓ Clicked back button (2nd time)
+✓ Clicked 'REPORTS'
+✓ Step 13: Clicked 'DEVICE REPORT'
+✓ Step 13: Verified 'DEVICE REPORT' page is displayed
+✓ Clicked 'HIGH PRIORITY' filter
+✓ Clicked 'MEDIUM PRIORITY' filter
+✓ Clicked 'LOW PRIORITY' filter
+✓ Step 22: Clicked 'ACTIVITY & MOVEMENT' dropdown
+✓ Clicked 'HIGH PRIORITY' filter
+✓ Clicked 'MEDIUM PRIORITY' filter
+✓ Clicked 'LOW PRIORITY' filter
+✓ Step 26: Clicked back button once
+]]></system-out>
   </testcase>
 </testsuite>

@@ -270,12 +270,6 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 30: Payment error dialog verified and message captured");
         Thread.sleep(3000);
 
-        // ✅ TEST CASE 1 - STEP 31: Click OK button
-        test.log(Status.INFO, "Step 31: Clicking OK button");
-        dataBankPage.clickOKButton();
-        test.log(Status.PASS, "✓ Step 31: OK button clicked");
-        Thread.sleep(3000);
-
         // ✅ TEST CASE 1 - STEP 32: Click Retry Payment button, wait 9 seconds, and
         // verify payment page
         test.log(Status.INFO, "Step 32: Clicking Retry Payment button and verifying payment page");

@@ -42,12 +42,11 @@ public class DataBankPage {
     private final String proceedToCheckoutButtonXpath = "//android.widget.Button[@content-desc=\"PROCEED TO CHECKOUT\"]";
     private final String checkoutPageXpath = "//android.view.View[@content-desc=\"CHECKOUT\"]";
     private final String deliveryAddressXpath = "//android.view.View[@content-desc=\"Delivery Address\"]";
-    private final String nameFieldXpath = "//android.widget.EditText[@text=\"John Doe\"]";
+    private final String nameFieldXpath = "//android.widget.EditText[string-length(@text) > 0]";
     private final String confirmButtonXpath = "//android.widget.Button[@content-desc=\"CONFIRM\"]";
     private final String genderDropdownXpath = "//android.widget.ImageView[@content-desc=\"Gender\"]";
     private final String maleButtonXpath = "//android.widget.Button[@content-desc=\"Male\"]";
     private final String countryCodeXpath = "//android.view.View[@content-desc=\"🇦🇫 +93\"]";
-    private final String countrySearchFieldXpath = "//android.widget.EditText";
     private final String phoneNumberFieldXpath = "//android.widget.ScrollView/android.widget.EditText[2]";
     private final String addressFieldXpath = "//android.widget.ScrollView/android.widget.EditText[3]";
     private final String cityFieldXpath = "//android.widget.ScrollView/android.widget.EditText[4]";
@@ -60,10 +59,10 @@ public class DataBankPage {
     private final String shippingMethodXpath = "//android.view.View[@content-desc=\"Shipping Method\"]";
     private final String proceedToPaymentButtonXpath = "//android.widget.Button[@content-desc=\"PROCEED TO PAYMENT\"]";
     private final String closeSheetXpath = "//android.view.View[@content-desc=\"Close sheet\"]";
-    private final String paymentErrorDialogXpath = "//android.view.View[@content-desc=\"PAYMENT ERROR\"]";
-    private final String paymentErrorMessageXpath = "//android.view.View[@content-desc=\"Please try again later\"]";
-    private final String retryPaymentButtonXpath = "//android.view.View[@content-desc=\"Retry Payment\"]";
-    private final String paymentPageButtonXpath = "//android.widget.ScrollView/android.view.View[1]/android.widget.Button";
+    private final String paymentErrorDialogXpath = "//android.view.View[@content-desc=\"PAYMENT FAILED\"]";
+    private final String paymentErrorMessageXpath = "//android.view.View[@content-desc=\"Please check your details and try again.\"]";
+    private final String retryPaymentButtonXpath = "//android.widget.Button[@content-desc=\"RETRY PAYMENT\"]";
+    private final String paymentPageButtonXpath = "//android.widget.TextView[@content-desc=\"Pay with Link\"]";
 
     // Test Case 2 - Specific Steps
     private final String uploadDataXpath = "//android.view.View[@content-desc=\"UPLOAD DATA\"]";
@@ -1337,18 +1336,28 @@ public class DataBankPage {
      */
     public void clickDateOfBirth() {
         try {
-            System.out.println("Step 13: Clicking DOB field using stable instance(15) selector...");
+            System.out.println("Step 13: Clicking DOB field using generic '/' XPath...");
             hideKeyboard();
             Thread.sleep(1000);
 
             WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(
-                    AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(15)")));
+                    By.xpath("//*[contains(@text, '/')]")));
 
             dobField.click();
-            System.out.println("✓ Step 13: DOB field clicked (Instance 15)");
+            System.out.println("✓ Step 13: DOB field clicked (Generic XPath)");
 
         } catch (Exception e) {
-            throw new RuntimeException("CRITICAL: Failed Step 13 DOB click: " + e.getMessage(), e);
+            System.out.println("⚠ Step 13: Generic XPath click failed, attempting hint-based fallback...");
+            try {
+                // Using hint attribute as reported in Appium inspection data
+                WebElement dobFieldFallback = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.xpath("//*[@hint='dd/mm/yyyy']")));
+                dobFieldFallback.click();
+                System.out.println("✓ Step 13: DOB field clicked (Hint-based Fallback)");
+            } catch (Exception ex) {
+                throw new RuntimeException(
+                        "CRITICAL: Failed Step 13 DOB click (both attempts failed): " + ex.getMessage(), ex);
+            }
         }
     }
 
@@ -1621,91 +1630,58 @@ public class DataBankPage {
      * Click country code, search for India, and select it
      */
     public void selectCountryCode() {
-        int maxRetries = 3;
-        boolean success = false;
-        String errorMessage = "India (+91) country code not found after search";
+        try {
+            System.out.println("Step 14: Selecting country code using scroll-until-found...");
 
-        for (int i = 1; i <= maxRetries; i++) {
+            // 1. Open picker
+            WebElement countryCodeDropdown;
             try {
-                System.out.println("Step 14: Country selection attempt " + i + " of " + maxRetries);
-
-                // 1. Open picker & wait for search input visibility
-                WebElement countryCodeDropdown;
-                try {
-                    countryCodeDropdown = wait
-                            .until(ExpectedConditions.elementToBeClickable(By.xpath(countryCodeXpath)));
-                } catch (Exception e) {
-                    countryCodeDropdown = wait.until(ExpectedConditions
-                            .elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, \"+\")]")));
-                }
-                countryCodeDropdown.click();
-
-                Thread.sleep(1500);
-                WebElement searchField = wait
-                        .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(countrySearchFieldXpath)));
-
-                // 2. Clear Box and type "India"
-                searchField.click();
-                searchField.clear();
-                searchField.sendKeys("India");
-                System.out.println("  - Typed 'India' in search box");
-
-                // 3. Wait for results list refresh
-                Thread.sleep(2500);
-
-                // 4-9. Identify Button: India +91, avoid BIOT (+246)
-                // Chaining UiSelector as requested
-                String uiAutomatorExpr = "new UiSelector().className(\"android.widget.Button\")" +
-                        ".descriptionContains(\"India\")" +
-                        ".descriptionContains(\"+91\")";
-
-                WebElement indiaButton = null;
-                try {
-                    indiaButton = driver.findElement(AppiumBy.androidUIAutomator(uiAutomatorExpr));
-                } catch (Exception e) {
-                    // 8. Scroll vertically if required
-                    System.out.println("  - India button not visible, attempting scroll...");
-                    scrollPageUp(); // Re-using existing scroll
-                    Thread.sleep(1000);
-                    indiaButton = driver.findElement(AppiumBy.androidUIAutomator(uiAutomatorExpr));
-                }
-
-                if (indiaButton != null) {
-                    String desc = indiaButton.getAttribute("content-desc");
-                    // 6-7. Ensure no match for +246 or BIOT
-                    if (desc != null && (desc.contains("+246") || desc.contains("British Indian Ocean Territory"))) {
-                        System.out.println("  ⚠ Unexpectedly found BIOT/+246, skipping...");
-                        continue;
-                    }
-
-                    indiaButton.click();
-                    System.out.println("  ✓ Clicked India (+91) Button");
-                }
-
-                // 10. Wait until picker closes
-                Thread.sleep(2000);
-
-                // 11. Validate selected country code is displayed as +91
-                WebElement activeCountry = wait.until(ExpectedConditions
-                        .presenceOfElementLocated(By.xpath("//android.view.View[contains(@content-desc, '+91')]")));
-                if (activeCountry.isDisplayed()) {
-                    System.out.println("✓ Step 14: Country code validation passed (+91)");
-                    success = true;
-                    break;
-                }
-
+                countryCodeDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(countryCodeXpath)));
             } catch (Exception e) {
-                System.out.println("  ⚠ Attempt " + i + " failed: " + e.getMessage());
-                hideKeyboard();
-                try {
-                    driver.navigate().back();
-                } catch (Exception ex) {
-                } // Try to close picker if stuck
+                countryCodeDropdown = wait.until(ExpectedConditions
+                        .elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, \"+\")]")));
             }
-        }
+            countryCodeDropdown.click();
+            Thread.sleep(1500);
 
-        if (!success) {
-            throw new RuntimeException(errorMessage);
+            // 2. Loop to scroll and find India
+            boolean found = false;
+            int maxSwipes = 35;
+            // Using a more robust XPath that handles newlines and flags
+            String indiaXpath = "//android.widget.Button[contains(@content-desc, 'India') and contains(@content-desc, '+91')]";
+
+            for (int i = 0; i < maxSwipes; i++) {
+                try {
+                    List<WebElement> elements = driver.findElements(By.xpath(indiaXpath));
+                    if (!elements.isEmpty()) {
+                        elements.get(0).click();
+                        System.out.println("✓ Step 14: India (+91) found and clicked");
+                        found = true;
+                        break;
+                    }
+                } catch (Exception e) {
+                    // Ignore and continue scrolling
+                }
+
+                System.out.println("  - India button not visible, scrolling (Attempt " + (i + 1) + ")...");
+                scrollPageUp(); // Swipe finger bottom -> top, scrolls list DOWN
+                Thread.sleep(800);
+            }
+
+            if (!found) {
+                throw new RuntimeException("Failed to find India (+91) after scrolling " + maxSwipes + " times");
+            }
+
+            // 3. Wait until picker closes and validate
+            Thread.sleep(2000);
+            WebElement activeCountry = wait.until(ExpectedConditions
+                    .presenceOfElementLocated(By.xpath("//android.view.View[contains(@content-desc, '+91')]")));
+            if (activeCountry.isDisplayed()) {
+                System.out.println("✓ Step 14: Country code validation passed (+91)");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to select India country code: " + e.getMessage(), e);
         }
     }
 
@@ -1862,7 +1838,7 @@ public class DataBankPage {
     public void fillDOBFieldCorrect() {
         try {
             // ✅ STEP 22: Click DOB field using DYNAMIC BOUNDS (Device Independent)
-            clickDobFieldDynamic();
+            clickDateOfBirth();
             System.out.println("✓ Step 22: Clicked DOB field via Dynamic Bounds");
 
             Thread.sleep(1500); // Wait for date picker

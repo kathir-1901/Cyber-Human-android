@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +103,22 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case1">testDataBank_Case1</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case2">testDataBank_Case2</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case3">testDataBank_Case3</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case4">testDataBank_Case4</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -126,9 +141,30 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
+                  <a name="testDataBank_Case1">
+                  </a> <!-- testDataBank_Case1 -->
+                  <span class="method-name">testDataBank_Case1</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="testDataBank_Case2">
                   </a> <!-- testDataBank_Case2 -->
                   <span class="method-name">testDataBank_Case2</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDataBank_Case3">
+                  </a> <!-- testDataBank_Case3 -->
+                  <span class="method-name">testDataBank_Case3</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDataBank_Case4">
+                  </a> <!-- testDataBank_Case4 -->
+                  <span class="method-name">testDataBank_Case4</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -143,11 +179,6 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
-    &lt;method-selectors&gt;
-      &lt;method-selector&gt;
-        &lt;selector-class name=&quot;org.apache.maven.surefire.testng.utils.MethodSelector&quot; priority=&quot;10000&quot;/&gt;
-      &lt;/method-selector&gt;
-    &lt;/method-selectors&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.automation.tests.DataBankTest&quot;/&gt;
     &lt;/classes&gt;
@@ -189,16 +220,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(4);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testDataBank_Case2')
+data.setCell(0, 1, 'testDataBank_Case1')
 data.setCell(0, 2, 'com.automation.tests.DataBankTest')
-data.setCell(0, 3, 79913);
+data.setCell(0, 3, 271638);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testDataBank_Case2')
+data.setCell(1, 2, 'com.automation.tests.DataBankTest')
+data.setCell(1, 3, 79828);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testDataBank_Case4')
+data.setCell(2, 2, 'com.automation.tests.DataBankTest')
+data.setCell(2, 3, 61000);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testDataBank_Case3')
+data.setCell(3, 2, 'com.automation.tests.DataBankTest')
+data.setCell(3, 3, 32912);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 7 minutes</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -213,20 +256,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Surefire_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">3 ignored methods</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.automation.tests.DataBankTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">testDataBank_Case4</span>
-                <br/>
-                <span class="ignored-method-name">testDataBank_Case3</span>
-                <br/>
-                <span class="ignored-method-name">testDataBank_Case1</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Surefire_suite" class="panel">
@@ -241,20 +273,56 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case2() throws java.lang.InterruptedExcep...)</span>
-                <span class="method-start">252 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case1() throws java.lang.InterruptedExcep...)</span>
+                <span class="method-start">141 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testDataBank_Case2</span>
+                <span class="method-name">testDataBank_Case1</span>
                 <span class="method-start">15148 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testDataBank_Case1 status=SUCCESS method=DataBankTest.testDataBank_Case1()[pri:1, i...)</span>
+                <span class="method-start">286790 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case2() throws java.lang.InterruptedExcep...)</span>
+                <span class="method-start">290063 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDataBank_Case2</span>
+                <span class="method-start">304594 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
                 <span class="method-name">tearDown([TestResult name=testDataBank_Case2 status=SUCCESS method=DataBankTest.testDataBank_Case2()[pri:2, i...)</span>
-                <span class="method-start">95074 ms</span>
+                <span class="method-start">384423 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case3() throws java.lang.InterruptedExcep...)</span>
+                <span class="method-start">387214 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDataBank_Case3</span>
+                <span class="method-start">401108 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testDataBank_Case3 status=SUCCESS method=DataBankTest.testDataBank_Case3()[pri:3, i...)</span>
+                <span class="method-start">434020 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case4() throws java.lang.InterruptedExcep...)</span>
+                <span class="method-start">436645 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDataBank_Case4</span>
+                <span class="method-start">449558 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testDataBank_Case4 status=SUCCESS method=DataBankTest.testDataBank_Case4()[pri:4, i...)</span>
+                <span class="method-start">510559 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownReport</span>
-                <span class="method-start">98125 ms</span>
+                <span class="method-start">513730 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
