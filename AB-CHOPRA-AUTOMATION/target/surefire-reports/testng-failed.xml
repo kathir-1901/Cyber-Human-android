@@ -5,7 +5,7 @@
     <classes>
       <class name="com.automation.tests.DataBankTest">
         <methods>
-          <include name="testDataBank_Case3"/>
+          <include name="testDataBank_Case4"/>
           <include name="setup"/>
           <include name="tearDownReport"/>
           <include name="setupReport"/>

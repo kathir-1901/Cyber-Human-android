@@ -97,9 +97,15 @@ public class DataBankPage {
     private final String deviceReportXpath = "//android.view.View[@content-desc=\"DEVICE REPORT\"]";
     private final String uploadReportButtonCase4Xpath = "//android.widget.Button[@content-desc=\"UPLOAD REPORT\"]";
     private final String uploadDataPageXpath = "//android.view.View[@content-desc=\"UPLOAD DATA\"]";
-    private final String epigeneticMappingButtonXpath = "//android.widget.Button[@content-desc=\"EPIGENETIC MAPPING\"]";
-    private final String packagesAndPricingPageXpath = "//android.view.View[@content-desc=\"PACKAGES & PRICING\"]";
-    private final String backButtonXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView";
+    private final String purchaseButtonXpath = "//android.widget.Button[@content-desc=\"PURCHASE\"]";
+    private final String packagesAndPricingPageXpath = "//android.view.View[contains(@content-desc, 'PACKAGES & PRICING')]";
+    private final String backButtonXpath = "//android.widget.ImageView[contains(@resource-id, 'ImageView')] | //android.widget.ImageView[1]"; // Generic
+                                                                                                                                              // back
+                                                                                                                                              // button
+                                                                                                                                              // or
+                                                                                                                                              // first
+                                                                                                                                              // image
+                                                                                                                                              // view
 
     // Test Case 4 - Priority Filter Steps (New Steps 6-13)
     private final String highPriorityButtonXpath = "//android.view.View[@content-desc=\"HIGH PRIORITY\"]";
@@ -107,15 +113,17 @@ public class DataBankPage {
     private final String lowPriorityButtonXpath = "//android.view.View[@content-desc=\"LOW PRIORITY\"]";
     private final String renalDropdownXpath = "//android.widget.ImageView[@content-desc=\"RENAL\"]";
     // XPath for verification (using contains() to handle newline characters)
-    private final String creatinineHighPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Creatinine') and contains(@content-desc, 'High Priority')]";
-    private final String bunMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Bun') and contains(@content-desc, 'Medium Priority') and not(contains(@content-desc, 'creatinine'))]";
-    private final String bunCreatinineLowPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Bun/creatinine') and contains(@content-desc, 'Low Priority')]";
-    private final String egfrMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Egfr') and contains(@content-desc, 'Medium Priority')]";
+    private final String creatinineHighPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'CREATININE') and contains(@content-desc, 'High Priority')]";
+    private final String bunMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'BUN') and contains(@content-desc, 'Medium Priority') and not(contains(@content-desc, 'CREATININE'))]";
+    private final String bunCreatinineLowPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'BUN/CREATININE') and contains(@content-desc, 'Low Priority')]";
+    private final String egfrMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'EGFR') and contains(@content-desc, 'Medium Priority')]";
     // XPath for second click in step 12 (simpler - just the name)
-    private final String bunSimpleXpath = "//android.widget.ImageView[@content-desc=\"Bun\"]";
-    private final String creatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"Creatinine\"]";
-    private final String bunCreatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"Bun/creatinine\"]";
-    private final String egfrSimpleXpath = "//android.widget.ImageView[@content-desc=\"Egfr\"]";
+    private final String bunSimpleXpath = "//android.widget.ImageView[@content-desc=\"BUN\"]";
+    private final String creatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"CREATININE\"]";
+    private final String bunCreatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"BUN/CREATININE\"]";
+    private final String egfrSimpleXpath = "//android.widget.ImageView[@content-desc=\"EGFR\"]";
+    private final String activityMovementDropdownXpath = "//android.widget.ImageView[@content-desc=\"ACTIVITY & MOVEMENT\"]";
+    private final String backButtonStep26Xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.ImageView";
 
     // ==================== COMMON STEP 3 ====================
 
@@ -856,11 +864,11 @@ public class DataBankPage {
      */
     public void clickEpigeneticMappingAndVerifyPackagesPage() {
         try {
-            // Click EPIGENETIC MAPPING button
-            WebElement epigeneticMappingButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(epigeneticMappingButtonXpath)));
-            epigeneticMappingButton.click();
-            System.out.println("✓ Step 10: Clicked 'EPIGENETIC MAPPING' button");
+            // Click PURCHASE button (updated from epigenetic mapping)
+            WebElement purchaseButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(purchaseButtonXpath)));
+            purchaseButton.click();
+            System.out.println("✓ Step 10: Clicked 'PURCHASE' button");
 
             // Verify PACKAGES & PRICING page is displayed
             WebElement packagesPage = wait.until(
@@ -931,6 +939,36 @@ public class DataBankPage {
             System.out.println("✓ Clicked 'HIGH PRIORITY' filter");
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to click HIGH PRIORITY filter", e);
+        }
+    }
+
+    /**
+     * TEST CASE 4 - STEP 22:
+     * Click "ACTIVITY & MOVEMENT" dropdown
+     */
+    public void clickActivityMovementDropdown() {
+        try {
+            WebElement dropdown = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(activityMovementDropdownXpath)));
+            dropdown.click();
+            System.out.println("✓ Step 22: Clicked 'ACTIVITY & MOVEMENT' dropdown");
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Failed to click ACTIVITY & MOVEMENT dropdown in Step 22", e);
+        }
+    }
+
+    /**
+     * TEST CASE 4 - STEP 26:
+     * Click back button once (using specific XPath from user)
+     */
+    public void clickBackButtonStep26() {
+        try {
+            WebElement backButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(backButtonStep26Xpath)));
+            backButton.click();
+            System.out.println("✓ Step 26: Clicked back button once");
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Failed to click back button in Step 26", e);
         }
     }
 

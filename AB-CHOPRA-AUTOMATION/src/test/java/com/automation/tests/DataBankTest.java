@@ -746,11 +746,11 @@ public class DataBankTest extends BaseTest {
         dataBankPage.clickAndVerifyDnaReport();
         test.log(Status.PASS, "✓ Step 16: DNA REPORT clicked and page verified");
 
-        // ✅ TEST CASE 4 - STEP 17: Click EPIGENETIC MAPPING button and verify PACKAGES
+        // ✅ TEST CASE 4 - STEP 17: Click PURCHASE button and verify PACKAGES
         // & PRICING page (previously step 9)
-        test.log(Status.INFO, "Step 17: Clicking EPIGENETIC MAPPING button and verifying PACKAGES & PRICING page");
+        test.log(Status.INFO, "Step 17: Clicking PURCHASE button and verifying PACKAGES & PRICING page");
         dataBankPage.clickEpigeneticMappingAndVerifyPackagesPage();
-        test.log(Status.PASS, "✓ Step 17: EPIGENETIC MAPPING clicked and PACKAGES & PRICING page verified");
+        test.log(Status.PASS, "✓ Step 17: PURCHASE button clicked and PACKAGES & PRICING page verified");
         Thread.sleep(9000); // Wait 9 seconds for page to load
 
         // ✅ TEST CASE 4 - STEP 18: Click back button twice (previously step 10)
@@ -769,10 +769,39 @@ public class DataBankTest extends BaseTest {
         dataBankPage.clickAndVerifyDeviceReport();
         test.log(Status.PASS, "✓ Step 20: DEVICE REPORT clicked and page verified");
 
-        // ✅ TEST CASE 4 - STEP 21: Click back button twice (previously step 13)
-        test.log(Status.INFO, "Step 21: Clicking back button twice");
-        dataBankPage.clickBackButtonTwice();
-        test.log(Status.PASS, "✓ Step 21: Back button clicked twice");
+        // ✅ TEST CASE 4 - STEP 21: Click priority filters (HIGH, MEDIUM, LOW)
+        test.log(Status.INFO, "Step 21: Clicking priority filters (HIGH, MEDIUM, LOW)");
+        dataBankPage.clickHighPriority();
+        test.log(Status.PASS, "✓ Step 21: HIGH PRIORITY clicked");
+        dataBankPage.clickMediumPriority();
+        test.log(Status.PASS, "✓ Step 21: MEDIUM PRIORITY clicked");
+        dataBankPage.clickLowPriority();
+        test.log(Status.PASS, "✓ Step 21: LOW PRIORITY clicked");
+
+        // ✅ TEST CASE 4 - STEP 22: Click ACTIVITY & MOVEMENT dropdown
+        test.log(Status.INFO, "Step 22: Clicking ACTIVITY & MOVEMENT dropdown");
+        dataBankPage.clickActivityMovementDropdown();
+        test.log(Status.PASS, "✓ Step 22: ACTIVITY & MOVEMENT dropdown clicked");
+
+        // ✅ TEST CASE 4 - STEP 23: Click HIGH PRIORITY
+        test.log(Status.INFO, "Step 23: Clicking HIGH PRIORITY");
+        dataBankPage.clickHighPriority();
+        test.log(Status.PASS, "✓ Step 23: HIGH PRIORITY clicked");
+
+        // ✅ TEST CASE 4 - STEP 24: Click MEDIUM PRIORITY
+        test.log(Status.INFO, "Step 24: Clicking MEDIUM PRIORITY");
+        dataBankPage.clickMediumPriority();
+        test.log(Status.PASS, "✓ Step 24: MEDIUM PRIORITY clicked");
+
+        // ✅ TEST CASE 4 - STEP 25: Click LOW PRIORITY
+        test.log(Status.INFO, "Step 25: Clicking LOW PRIORITY");
+        dataBankPage.clickLowPriority();
+        test.log(Status.PASS, "✓ Step 25: LOW PRIORITY clicked");
+
+        // ✅ TEST CASE 4 - STEP 26: Clicking back button once
+        test.log(Status.INFO, "Step 26: Clicking back button once");
+        dataBankPage.clickBackButtonStep26();
+        test.log(Status.PASS, "✓ Step 26: Back button clicked once");
 
         test.log(Status.PASS, "Data Bank Test Case 4 completed successfully");
     }
