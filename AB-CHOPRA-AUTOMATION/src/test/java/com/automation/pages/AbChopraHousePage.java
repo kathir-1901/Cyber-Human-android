@@ -82,7 +82,9 @@ public class AbChopraHousePage {
     private final String fileNameInputXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.EditText[2]";
 
     // Step 20: Close icon
-    private final String closeIconXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.ImageView";
+    // Element has no content-desc, no resource-id, no text.
+    // It is the only clickable ImageView child of the ADD TO FILE container.
+    private final String closeIconXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.ImageView[@clickable=\"true\"]";
 
     // Step 21: Saved dialog and success message
     private final String savedDialogXpath = "//android.view.View[@content-desc=\"SAVED\"]";
@@ -110,7 +112,19 @@ public class AbChopraHousePage {
 
     // Step 31: Success dialog and delete message
     private final String successDialogXpath = "//android.view.View[@content-desc=\"SUCCESS\"]";
-    private final String deleteSuccessMessageXpath = "//android.view.View[@content-desc=\"Your article has been successfully deleted\"]";
+    private final String deleteSuccessMessageXpath = "//android.view.View[@content-desc=\"Your article has been successfully deleted.\"]";
+
+    // Steps 27a-27i: Archive file edit / organise
+    // Menu icon is the 2nd ImageView child of the archive item (dynamic date in
+    // content-desc)
+    private final String archiveMenuIconXpath = "//android.view.View[contains(@content-desc,'New')]/android.widget.ImageView[2]";
+    private final String editMenuItemXpath = "//android.view.View[@content-desc=\"EDIT\"]";
+    private final String archiveFileNameInputXpath = "//android.widget.EditText";
+    private final String saveButtonXpath = "//android.widget.Button[@content-desc=\"SAVE\"]";
+    private final String archiveRenameSuccessMessageXpath = "//android.view.View[@content-desc=\"Your archive name has been successfully updated.\"]";
+    // Menu icon for the renamed file (contains 'EDIT NEW' + dynamic date)
+    private final String editNewMenuIconXpath = "//android.view.View[contains(@content-desc,'EDIT NEW')]/android.widget.ImageView[2]";
+    private final String organiseMenuItemXpath = "//android.view.View[@content-desc=\"ORGANISE\"]";
 
     // ==================== METHODS ====================
 
@@ -338,16 +352,21 @@ public class AbChopraHousePage {
             // Strategy 1: Robust contains() XPath (Handles \n or space variability)
             try {
                 WebElement article = wait.until(ExpectedConditions.presenceOfElementLocated(
-                        By.xpath("//android.widget.ImageView[contains(@content-desc, 'Love & Unity') and contains(@content-desc, 'min')]")));
-                if (article.isDisplayed()) return true;
+                        By.xpath(
+                                "//android.widget.ImageView[contains(@content-desc, 'Love & Unity') and contains(@content-desc, 'min')]")));
+                if (article.isDisplayed())
+                    return true;
             } catch (Exception ignored) {
             }
 
-            // Strategy 2: Exact match based on latest JSON dump (Note: appium/android might use \n)
+            // Strategy 2: Exact match based on latest JSON dump (Note: appium/android might
+            // use \n)
             try {
                 WebElement article = driver
-                        .findElement(By.xpath("//android.widget.ImageView[@content-desc='Love & Unity\nAudio \n 8 min']"));
-                if (article.isDisplayed()) return true;
+                        .findElement(
+                                By.xpath("//android.widget.ImageView[@content-desc='Love & Unity\nAudio \n 8 min']"));
+                if (article.isDisplayed())
+                    return true;
             } catch (Exception ignored) {
             }
 
@@ -355,7 +374,8 @@ public class AbChopraHousePage {
             try {
                 WebElement article = driver.findElement(
                         io.appium.java_client.AppiumBy.accessibilityId("Love & Unity\nAudio \n 8 min"));
-                if (article.isDisplayed()) return true;
+                if (article.isDisplayed())
+                    return true;
             } catch (Exception ignored) {
             }
 
@@ -502,26 +522,30 @@ public class AbChopraHousePage {
     }
 
     /**
-     * Step 17: Click article radio button
-     * Clicks the radio button inside the article card, not the card itself
-     * Radio button is a clickable android.view.View without content-desc
+     * Step 17: Click any article radio button (generic - not tied to a specific
+     * article title)
+     * The radio button is a clickable android.view.View child of an
+     * android.widget.ImageView card.
+     * Element has no content-desc, resource-id, or text - only clickable="true" is
+     * reliable.
+     * Uses (xpath)[1] to pick the first available radio button on screen.
      */
     public void clickVideoItem() {
         try {
-            // Updated XPath provided by user for the radio button inside the article card
-            By articleRadio = By.xpath(
-                    "//android.widget.ImageView[@content-desc=\"The Timeless Dance: Cultivating a Youthful Mind and Radiant Appearance Article 4 min\"]/android.view.View");
-            WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(articleRadio));
-            radioButton.click();
+            // Primary: first clickable android.view.View inside any ImageView article card
+            By radioButton = By.xpath(
+                    "(//android.widget.ImageView/android.view.View[@clickable=\"true\"])[1]");
+            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(radioButton));
+            button.click();
         } catch (Exception e) {
-            // Fallback: try contains() approach if exact match fails
+            // Fallback: broaden search to any clickable android.view.View on screen
             try {
                 By fallbackRadio = By.xpath(
-                        "//android.widget.ImageView[contains(@content-desc,'The Timeless Dance')]//android.view.View");
-                WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(fallbackRadio));
-                radioButton.click();
+                        "(//android.view.View[@clickable=\"true\"])[1]");
+                WebElement button = wait.until(ExpectedConditions.elementToBeClickable(fallbackRadio));
+                button.click();
             } catch (Exception e2) {
-                throw new RuntimeException("Article radio button not found with primary or fallback XPath", e2);
+                throw new RuntimeException("No clickable radio button found on screen", e2);
             }
         }
     }
@@ -588,78 +612,78 @@ public class AbChopraHousePage {
     }
 
     /**
-     * Step 19.5: Trigger save before closing by forcing focus loss
-     * This method MUST be called after entering data and BEFORE clicking Close icon
-     * 
-     * The app only saves data when input focus is lost.
-     * Direct Close click skips the save logic.
-     * 
-     * Solution: Force focus loss by:
-     * 1. Hide keyboard to remove input focus
-     * 2. Tap outside the input field (bottom of screen) using W3C touch actions
-     * 3. Wait for app to trigger its save callback
-     * 
-     * This simulates real user behavior and ensures data is saved.
-     */
-    public void triggerSaveBeforeClose() {
-        try {
-            // Step 1: Hide keyboard to remove input focus
-            try {
-                ((io.appium.java_client.android.AndroidDriver) driver).hideKeyboard();
-                Thread.sleep(500); // Allow keyboard to fully hide
-            } catch (Exception e) {
-                // Keyboard might already be hidden, continue
-                System.out.println("Keyboard hide failed or already hidden: " + e.getMessage());
-            }
-
-            // Step 2: Tap outside the input field at bottom of screen
-            // This forces focus loss and triggers the app's auto-save callback
-            Dimension screenSize = driver.manage().window().getSize();
-
-            // Calculate tap coordinates: center X, 90% down Y (bottom area)
-            int tapX = screenSize.width / 2;
-            int tapY = (int) (screenSize.height * 0.9);
-
-            // Perform coordinate-based tap using W3C Actions
-            // PointerInput.Kind.TOUCH simulates a real finger tap
-            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-            Sequence tap = new Sequence(finger, 1);
-
-            // Move pointer to bottom area
-            tap.addAction(finger.createPointerMove(
-                    Duration.ZERO,
-                    PointerInput.Origin.viewport(),
-                    tapX,
-                    tapY));
-
-            // Pointer down (finger press)
-            tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-
-            // Pointer up (finger release)
-            tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-            // Execute the tap action
-            driver.perform(Collections.singletonList(tap));
-
-            // Step 3: Wait for app to trigger save callback
-            Thread.sleep(1000);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to trigger save before close", e);
-        }
-    }
-
-    /**
-     * Step 20: Click close icon
-     * NOTE: Must call triggerSaveBeforeClose() BEFORE this method
-     * to ensure data is saved (by forcing focus loss)
+     * Step 20: Tap the close icon using W3C TOUCH at the element's real center.
+     *
+     * Strategy 1: Find the ImageView child of ADD TO FILE dialog via XPath,
+     * get its LIVE position dynamically (handles dialog shift after keyboard hide),
+     * then tap center with W3C TOUCH.
+     *
+     * Strategy 2: Known fixed center (907, 546) from Appium bounds
+     * [844,483][970,609].
+     * Used when XPath fails (e.g. parent content-desc changes after keyboard hide).
      */
     public void clickCloseIcon() {
+        int tapX = 907; // default fallback center X
+        int tapY = 546; // default fallback center Y
+
+        // ── Strategy 1: find element dynamically via XPath ───────────────────────
         try {
-            WebElement closeIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(closeIconXpath)));
-            closeIcon.click();
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Close icon not found", e);
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(8));
+            WebElement closeIcon = null;
+
+            // Try exact content-desc match first
+            try {
+                closeIcon = shortWait.until(
+                        ExpectedConditions.presenceOfElementLocated(
+                                By.xpath("//android.view.View[@content-desc=\"ADD TO FILE\"]"
+                                        + "/android.widget.ImageView")));
+            } catch (Exception ignored) {
+            }
+
+            // Try contains() match if exact fails
+            if (closeIcon == null) {
+                try {
+                    closeIcon = driver.findElement(
+                            By.xpath("//android.view.View[contains(@content-desc, 'ADD TO FILE')]"
+                                    + "/android.widget.ImageView"));
+                } catch (Exception ignored) {
+                }
+            }
+
+            if (closeIcon != null) {
+                org.openqa.selenium.Point loc = closeIcon.getLocation();
+                Dimension size = closeIcon.getSize();
+                tapX = loc.getX() + size.getWidth() / 2;
+                tapY = loc.getY() + size.getHeight() / 2;
+                System.out.println("✓ Close icon found via XPath at: (" + tapX + ", " + tapY + ")");
+            } else {
+                System.out.println("⚠ Close icon XPath not found — using fixed coords (" + tapX + ", " + tapY + ")");
+            }
+        } catch (Exception ignored) {
+            System.out.println("⚠ XPath strategy failed — using fixed coords (" + tapX + ", " + tapY + ")");
+        }
+
+        // ── W3C TOUCH tap at the resolved coordinates ─────────────────────────────
+        try {
+            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+            Sequence tap = new Sequence(finger, 1);
+            tap.addAction(finger.createPointerMove(
+                    Duration.ZERO, PointerInput.Origin.viewport(), tapX, tapY));
+            tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            // 80 ms hold — real finger tap
+            tap.addAction(finger.createPointerMove(
+                    Duration.ofMillis(80), PointerInput.Origin.viewport(), tapX, tapY));
+            tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+            driver.perform(Collections.singletonList(tap));
+
+            // Wait for SAVED dialog to surface
+            Thread.sleep(2000);
+
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Interrupted while tapping close icon", ie);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to tap close icon at (" + tapX + ", " + tapY + ")", e);
         }
     }
 
@@ -807,30 +831,61 @@ public class AbChopraHousePage {
     }
 
     /**
-     * Step 29: Click remove icon
-     * Uses relative XPath to locate the clickable ImageView within the article view
-     * Waits for element to be visible and clickable before clicking
+     * Step 29: Tap the remove icon using W3C TOUCH at its DYNAMIC center.
+     *
+     * The remove icon is the clickable ImageView child of the article item View.
+     * The article View has content-desc like "What is Consciousness\nVideo \n 3
+     * min",
+     * which always contains "Video" or " min" — unlike the file row ("EDIT
+     * NEW\nModified…").
+     *
+     * WHY W3C TOUCH (not element.click()):
+     * The parent article View is also clickable with large bounds, so
+     * element.click()
+     * gets routed to the parent. A viewport-coordinate tap bypasses parent routing.
+     *
+     * WHY dynamic (not fixed coords):
+     * Fixed coords break on different screen sizes/densities.
+     * getLocation() + getSize() gives the real position on any device.
      */
     public void clickRemoveIcon() {
         try {
-            // Use relative XPath to find the clickable ImageView (remove icon)
-            // This locates the icon relative to the article content-desc
+            // Scope to the article item View (contains "Video" or " min" in content-desc)
+            // to avoid matching the file row or other Views.
             By removeIconLocator = By.xpath(
-                    "//android.view.View[contains(@content-desc,'The Timeless Dance')]//android.widget.ImageView[@clickable='true']");
+                    "//android.view.View[contains(@content-desc,'Video') or contains(@content-desc,' min')]"
+                            + "/android.widget.ImageView[@clickable='true']");
 
-            // Wait for the remove icon to be visible and clickable
             WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(15));
             WebElement removeIcon = longWait.until(
-                    ExpectedConditions.elementToBeClickable(removeIconLocator));
+                    ExpectedConditions.presenceOfElementLocated(removeIconLocator));
 
-            // Click the remove icon
-            removeIcon.click();
+            // Compute center on the actual device screen (works on any resolution)
+            org.openqa.selenium.Point loc = removeIcon.getLocation();
+            Dimension size = removeIcon.getSize();
+            int tapX = loc.getX() + size.getWidth() / 2;
+            int tapY = loc.getY() + size.getHeight() / 2;
+            System.out.println("✓ Remove icon dynamic center tap at: (" + tapX + ", " + tapY + ")");
 
-            // Wait for remove confirmation dialog to appear
+            // W3C TOUCH tap — bypasses parent View's clickability
+            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+            Sequence tap = new Sequence(finger, 1);
+            tap.addAction(finger.createPointerMove(
+                    Duration.ZERO, PointerInput.Origin.viewport(), tapX, tapY));
+            tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            tap.addAction(finger.createPointerMove(
+                    Duration.ofMillis(80), PointerInput.Origin.viewport(), tapX, tapY));
+            tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+            driver.perform(Collections.singletonList(tap));
+
+            // Wait for YES confirmation dialog
             Thread.sleep(1000);
 
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Interrupted while tapping remove icon", ie);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to click remove icon", e);
+            throw new RuntimeException("Failed to tap remove icon", e);
         }
     }
 
@@ -869,6 +924,141 @@ public class AbChopraHousePage {
             return deleteMessage.getAttribute("content-desc");
         } catch (TimeoutException e) {
             throw new RuntimeException("Delete success message not found", e);
+        }
+    }
+
+    // ==================== ARCHIVE EDIT / ORGANISE STEPS ====================
+
+    /**
+     * Step 27a: Click the menu icon (3-dot / kebab) on the archive file item.
+     * Uses contains() on content-desc to handle the dynamic date suffix.
+     * XPath:
+     * //android.view.View[contains(@content-desc,'New')]/android.widget.ImageView[2]
+     */
+    public void clickArchiveMenuIcon() {
+        try {
+            WebElement menuIcon = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(archiveMenuIconXpath)));
+            menuIcon.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Archive menu icon not found", e);
+        }
+    }
+
+    /**
+     * Step 27b: Click EDIT from the archive context menu.
+     * XPath: //android.view.View[@content-desc="EDIT"]
+     */
+    public void clickEditMenuItem() {
+        try {
+            WebElement editItem = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(editMenuItemXpath)));
+            editItem.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("EDIT menu item not found", e);
+        }
+    }
+
+    /**
+     * Step 27c: Clear the file name input and type the new name.
+     * XPath: //android.widget.EditText
+     */
+    public void editArchiveFileName(String newName) {
+        try {
+            WebElement input = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(archiveFileNameInputXpath)));
+            input.click();
+            input.clear();
+            input.sendKeys(newName);
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Archive file name input not found", e);
+        }
+    }
+
+    /**
+     * Step 27d: Click the SAVE button.
+     * XPath: //android.widget.Button[@content-desc="SAVE"]
+     */
+    public void clickSaveButton() {
+        try {
+            WebElement saveBtn = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(saveButtonXpath)));
+            saveBtn.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("SAVE button not found", e);
+        }
+    }
+
+    /**
+     * Step 27e: Verify the SUCCESS dialog is displayed after rename.
+     * Reuses the existing successDialogXpath.
+     */
+    public boolean isArchiveRenameSuccessDisplayed() {
+        try {
+            WebElement successDialog = wait
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath(successDialogXpath)));
+            return successDialog.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Step 27f: Get the archive rename success message.
+     * XPath: //android.view.View[@content-desc="Your archive name has been
+     * successfully updated."]
+     */
+    public String getArchiveRenameSuccessMessage() {
+        try {
+            WebElement msg = wait.until(
+                    ExpectedConditions.presenceOfElementLocated(By.xpath(archiveRenameSuccessMessageXpath)));
+            return msg.getAttribute("content-desc");
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Archive rename success message not found", e);
+        }
+    }
+
+    /**
+     * Step 27g: Click OK after the archive rename success dialog.
+     * Reuses the existing okButtonXpath.
+     */
+    public void clickOkAfterRename() {
+        try {
+            WebElement okBtn = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(okButtonXpath)));
+            okBtn.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("OK button not found after rename", e);
+        }
+    }
+
+    /**
+     * Step 27h: Click the menu icon on the renamed file (now named 'EDIT NEW ...').
+     * Uses contains('EDIT NEW') to handle the dynamic date suffix.
+     * XPath: //android.view.View[contains(@content-desc,'EDIT
+     * NEW')]/android.widget.ImageView[2]
+     */
+    public void clickEditNewMenuIcon() {
+        try {
+            WebElement menuIcon = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(editNewMenuIconXpath)));
+            menuIcon.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("EDIT NEW archive menu icon not found", e);
+        }
+    }
+
+    /**
+     * Step 27i: Click ORGANISE from the archive context menu.
+     * XPath: //android.view.View[@content-desc="ORGANISE"]
+     */
+    public void clickOrganiseMenuItem() {
+        try {
+            WebElement organise = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(organiseMenuItemXpath)));
+            organise.click();
+        } catch (TimeoutException e) {
+            throw new RuntimeException("ORGANISE menu item not found", e);
         }
     }
 }

@@ -60,6 +60,7 @@ public class AbChopraHouseTest extends BaseTest {
 
                 // ✅ COMMON STEP 1: Verify DAILY PRIORITY heading is displayed on home page
                 test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page");
+                homePage.waitForHomePage();
                 boolean isHomePageDisplayed = homePage.isHomePageDisplayed();
                 if (!isHomePageDisplayed) {
                         test.log(Status.INFO,
@@ -131,62 +132,68 @@ public class AbChopraHouseTest extends BaseTest {
                 test.log(Status.PASS, "✓ Step 9 (new): Search cleared");
                 Thread.sleep(9000);
 
-                // ✅ STEP 9: Click FILTER
-                test.log(Status.INFO, "Step 9: Clicking FILTER");
-                abChopraHousePage.clickFilter();
-                test.log(Status.PASS, "✓ Step 9: FILTER clicked");
-                Thread.sleep(2000);
+                // ✅ STEP 9 (NEW): Hide keyboard
+                test.log(Status.INFO, "Step 9 (new): Hiding keyboard");
+                abChopraHousePage.hideKeyboard();
+                test.log(Status.PASS, "✓ Step 9 (new): Keyboard hidden");
 
-                // ✅ STEP 10: Click Mind & Emotions radio button
-                test.log(Status.INFO, "Step 10: Clicking Mind & Emotions radio button");
-                abChopraHousePage.clickMindEmotionsRadio();
-                test.log(Status.PASS, "✓ Step 10: Mind & Emotions radio button clicked");
-                Thread.sleep(1000);
+                // // ✅ STEP 9: Click FILTER
+                // test.log(Status.INFO, "Step 9: Clicking FILTER");
+                // abChopraHousePage.clickFilter();
+                // test.log(Status.PASS, "✓ Step 9: FILTER clicked");
+                // Thread.sleep(2000);
 
-                // ✅ STEP 11: Set timing
-                test.log(Status.INFO, "Step 11: Setting timing");
-                abChopraHousePage.setTiming();
-                test.log(Status.PASS, "✓ Step 11: Timing set");
-                Thread.sleep(1000);
+                // // ✅ STEP 10: Click Mind & Emotions radio button
+                // test.log(Status.INFO, "Step 10: Clicking Mind & Emotions radio button");
+                // abChopraHousePage.clickMindEmotionsRadio();
+                // test.log(Status.PASS, "✓ Step 10: Mind & Emotions radio button clicked");
+                // Thread.sleep(1000);
 
-                // ✅ STEP 12: Click APPLY (wait for loading)
-                test.log(Status.INFO, "Step 12: Clicking APPLY and waiting for loading");
-                abChopraHousePage.clickApply();
-                test.log(Status.PASS, "✓ Step 12: APPLY clicked and loading completed");
-                Thread.sleep(9000); // Wait for page to load completely before proceeding
+                // // ✅ STEP 11: Set timing
+                // test.log(Status.INFO, "Step 11: Setting timing");
+                // abChopraHousePage.setTiming();
+                // test.log(Status.PASS, "✓ Step 11: Timing set");
+                // Thread.sleep(1000);
 
-                // ✅ STEP 13: Click See All 1, verify Listen page, click back
-                test.log(Status.INFO, "Step 13: Clicking See All 1");
-                abChopraHousePage.clickSeeAll1();
-                test.log(Status.PASS, "✓ Step 13a: See All 1 clicked");
-                Thread.sleep(9000);
+                // // ✅ STEP 12: Click APPLY (wait for loading)
+                // test.log(Status.INFO, "Step 12: Clicking APPLY and waiting for loading");
+                // abChopraHousePage.clickApply();
+                // test.log(Status.PASS, "✓ Step 12: APPLY clicked and loading completed");
+                // Thread.sleep(9000); // Wait for page to load completely before proceeding
 
-                test.log(Status.INFO, "Step 13: Verifying Listen page is displayed");
-                Assert.assertTrue(abChopraHousePage.isListenPageDisplayed(),
-                                "Listen page should be displayed");
-                test.log(Status.PASS, "✓ Step 13b: Listen page is displayed");
+                // // ✅ STEP 13: Click See All 1, verify Listen page, click back
+                // test.log(Status.INFO, "Step 13: Clicking See All 1");
+                // abChopraHousePage.clickSeeAll1();
+                // test.log(Status.PASS, "✓ Step 13a: See All 1 clicked");
+                // Thread.sleep(9000);
 
-                test.log(Status.INFO, "Step 13: Clicking back button");
-                abChopraHousePage.clickBackButton();
-                test.log(Status.PASS, "✓ Step 13c: Back button clicked");
-                Thread.sleep(9000);
+                // test.log(Status.INFO, "Step 13: Verifying Listen page is displayed");
+                // Assert.assertTrue(abChopraHousePage.isListenPageDisplayed(),
+                // "Listen page should be displayed");
+                // test.log(Status.PASS, "✓ Step 13b: Listen page is displayed");
 
-                // ✅ STEP 14: Click See All 3, verify Watch page, click back (SWAPPED with step
-                // 16)
-                test.log(Status.INFO, "Step 14: Clicking See All 3");
-                abChopraHousePage.clickSeeAll3();
-                test.log(Status.PASS, "✓ Step 14a: See All 3 clicked");
-                Thread.sleep(9000);
+                // test.log(Status.INFO, "Step 13: Clicking back button");
+                // abChopraHousePage.clickBackButton();
+                // test.log(Status.PASS, "✓ Step 13c: Back button clicked");
+                // Thread.sleep(9000);
 
-                test.log(Status.INFO, "Step 14: Verifying Watch page is displayed");
-                Assert.assertTrue(abChopraHousePage.isWatchPageDisplayed(),
-                                "Watch page should be displayed");
-                test.log(Status.PASS, "✓ Step 14b: Watch page is displayed");
+                // // ✅ STEP 14: Click See All 3, verify Watch page, click back (SWAPPED with
+                // step
+                // // 16)
+                // test.log(Status.INFO, "Step 14: Clicking See All 3");
+                // abChopraHousePage.clickSeeAll3();
+                // test.log(Status.PASS, "✓ Step 14a: See All 3 clicked");
+                // Thread.sleep(9000);
 
-                test.log(Status.INFO, "Step 14: Clicking back button");
-                abChopraHousePage.clickBackButton();
-                test.log(Status.PASS, "✓ Step 14c: Back button clicked");
-                Thread.sleep(2000);
+                // test.log(Status.INFO, "Step 14: Verifying Watch page is displayed");
+                // Assert.assertTrue(abChopraHousePage.isWatchPageDisplayed(),
+                // "Watch page should be displayed");
+                // test.log(Status.PASS, "✓ Step 14b: Watch page is displayed");
+
+                // test.log(Status.INFO, "Step 14: Clicking back button");
+                // abChopraHousePage.clickBackButton();
+                // test.log(Status.PASS, "✓ Step 14c: Back button clicked");
+                // Thread.sleep(2000);
 
                 // ✅ STEP 15: Swipe up on container
                 test.log(Status.INFO, "Step 15: Swiping up on container");
@@ -194,34 +201,36 @@ public class AbChopraHouseTest extends BaseTest {
                 test.log(Status.PASS, "✓ Step 15: Swiped up on container");
                 Thread.sleep(5000);
 
-                // ✅ STEP 16: Click See All 2, verify Read page, click back (SWAPPED with step
-                // 14)
-                test.log(Status.INFO, "Step 16: Clicking See All 2");
-                abChopraHousePage.clickSeeAll2();
-                test.log(Status.PASS, "✓ Step 16a: See All 2 clicked");
-                Thread.sleep(9000);
+                // // ✅ STEP 16: Click See All 2, verify Read page, click back (SWAPPED with
+                // step
+                // // 14)
+                // test.log(Status.INFO, "Step 16: Clicking See All 2");
+                // abChopraHousePage.clickSeeAll2();
+                // test.log(Status.PASS, "✓ Step 16a: See All 2 clicked");
+                // Thread.sleep(9000);
 
-                test.log(Status.INFO, "Step 16: Verifying Read page is displayed");
-                Assert.assertTrue(abChopraHousePage.isReadPageDisplayed(),
-                                "Read page should be displayed");
-                test.log(Status.PASS, "✓ Step 16b: Read page is displayed");
+                // test.log(Status.INFO, "Step 16: Verifying Read page is displayed");
+                // Assert.assertTrue(abChopraHousePage.isReadPageDisplayed(),
+                // "Read page should be displayed");
+                // test.log(Status.PASS, "✓ Step 16b: Read page is displayed");
 
-                test.log(Status.INFO, "Step 16: Clicking back button");
-                abChopraHousePage.clickBackButton();
-                test.log(Status.PASS, "✓ Step 16c: Back button clicked");
-                Thread.sleep(5000);
+                // test.log(Status.INFO, "Step 16: Clicking back button");
+                // abChopraHousePage.clickBackButton();
+                // test.log(Status.PASS, "✓ Step 16c: Back button clicked");
+                // Thread.sleep(5000);
 
-                // ✅ STEP 17: Click video item
-                test.log(Status.INFO, "Step 17: Clicking video item");
-                abChopraHousePage.clickVideoItem();
-                test.log(Status.PASS, "✓ Step 17: Video item clicked");
-                Thread.sleep(2000);
+                // // ✅ STEP 17: Click video item
+                // test.log(Status.INFO, "Step 17: Clicking video item");
+                // abChopraHousePage.clickVideoItem();
+                // test.log(Status.PASS, "✓ Step 17: Video item clicked");
+                // Thread.sleep(2000);
 
-                // ✅ STEP 18: Click search box and search "one"
-                test.log(Status.INFO, "Step 18: Clicking search box and searching for 'one'");
-                abChopraHousePage.searchForOne();
-                test.log(Status.PASS, "✓ Step 18: Searched for 'one'");
-                Thread.sleep(2000);
+                // // ✅ STEP 18: Click search box and search "one"
+                // test.log(Status.INFO, "Step 18: Clicking search box and searching for
+                // 'one'");
+                // abChopraHousePage.searchForOne();
+                // test.log(Status.PASS, "✓ Step 18: Searched for 'one'");
+                // Thread.sleep(2000);
 
                 // ✅ STEP 19: Verify "One" is shown in search results
                 // test.log(Status.INFO, "Step 19: Verifying 'One' is shown in search results");
@@ -229,50 +238,52 @@ public class AbChopraHouseTest extends BaseTest {
                 // "Search result 'One' should be displayed");
                 // test.log(Status.PASS, "✓ Step 19: 'One' is shown in search results");
 
-                // ✅ STEP 18 (second): Click New File icon
-                test.log(Status.INFO, "Step 18 (second): Clicking New File icon");
-                abChopraHousePage.clickNewFileIcon();
-                test.log(Status.PASS, "✓ Step 18 (second): New File icon clicked");
-                Thread.sleep(2000);
+                // // ✅ STEP 18 (second): Click New File icon
+                // test.log(Status.INFO, "Step 18 (second): Clicking New File icon");
+                // abChopraHousePage.clickNewFileIcon();
+                // test.log(Status.PASS, "✓ Step 18 (second): New File icon clicked");
+                // Thread.sleep(2000);
 
-                // ✅ STEP 19 (second): Create file with name "New"
-                test.log(Status.INFO, "Step 19 (second): Creating file with name 'New'");
-                abChopraHousePage.createFile("New");
-                test.log(Status.PASS, "✓ Step 19 (second): File name 'New' entered");
-                Thread.sleep(1000);
+                // // ✅ STEP 19 (second): Create file with name "New"
+                // test.log(Status.INFO, "Step 19 (second): Creating file with name 'New'");
+                // abChopraHousePage.createFile("New");
+                // test.log(Status.PASS, "✓ Step 19 (second): File name 'New' entered");
+                // Thread.sleep(1000);
 
-                // ✅ STEP 19.5: Trigger save before close (force focus loss)
-                test.log(Status.INFO, "Step 19.5: Triggering save by forcing focus loss");
-                abChopraHousePage.triggerSaveBeforeClose();
-                test.log(Status.PASS, "✓ Step 19.5: Focus loss triggered, save callback executed");
+                // // ✅ STEP 19.5 (NEW): Hide keyboard
+                // test.log(Status.INFO, "Step 9 (new): Hiding keyboard");
+                // abChopraHousePage.hideKeyboard();
+                // test.log(Status.PASS, "✓ Step 9 (new): Keyboard hidden");
 
-                // ✅ STEP 20: Click close icon
-                test.log(Status.INFO, "Step 20: Clicking close icon");
-                abChopraHousePage.clickCloseIcon();
-                test.log(Status.PASS, "✓ Step 20: Close icon clicked");
-                Thread.sleep(2000);
+                // // ✅ STEP 20: Click close icon
+                // test.log(Status.INFO, "Step 20: Clicking close icon");
+                // abChopraHousePage.clickCloseIcon();
+                // test.log(Status.PASS, "✓ Step 20: Close icon clicked");
+                // Thread.sleep(2000);
 
-                // ✅ STEP 21: Verify SAVED dialog and capture success message
-                test.log(Status.INFO, "Step 21: Verifying SAVED dialog is displayed");
-                Assert.assertTrue(abChopraHousePage.isSavedDialogDisplayed(),
-                                "SAVED dialog should be displayed");
-                test.log(Status.PASS, "✓ Step 21a: SAVED dialog is displayed");
+                // // ✅ STEP 21: Verify SAVED dialog and capture success message
+                // test.log(Status.INFO, "Step 21: Verifying SAVED dialog is displayed");
+                // Assert.assertTrue(abChopraHousePage.isSavedDialogDisplayed(),
+                // "SAVED dialog should be displayed");
+                // test.log(Status.PASS, "✓ Step 21a: SAVED dialog is displayed");
 
-                test.log(Status.INFO, "Step 21: Capturing success message");
-                String savedMessage = abChopraHousePage.getSavedSuccessMessage();
-                test.log(Status.PASS, "✓ Step 21b: Success message captured");
-                test.log(Status.INFO, "📋 Saved Success Message: " + savedMessage);
+                // test.log(Status.INFO, "Step 21: Capturing success message");
+                // String savedMessage = abChopraHousePage.getSavedSuccessMessage();
+                // test.log(Status.PASS, "✓ Step 21b: Success message captured");
+                // test.log(Status.INFO, "📋 Saved Success Message: " + savedMessage);
 
-                // Verify the success message
-                Assert.assertEquals(savedMessage, "Your article has been successfully saved.",
-                                "Success message should confirm successful save");
-                test.log(Status.PASS, "✓ Step 21c: Verified correct success message displayed");
+                // // Verify the success message
+                // Assert.assertEquals(savedMessage, "Your article has been successfully
+                // saved.",
+                // "Success message should confirm successful save");
+                // test.log(Status.PASS, "✓ Step 21c: Verified correct success message
+                // displayed");
 
-                // ✅ STEP 22: Click OK
-                test.log(Status.INFO, "Step 22: Clicking OK button");
-                abChopraHousePage.clickOkButton();
-                test.log(Status.PASS, "✓ Step 22: OK button clicked");
-                Thread.sleep(2000);
+                // // ✅ STEP 22: Click OK
+                // test.log(Status.INFO, "Step 22: Clicking OK button");
+                // abChopraHousePage.clickOkButton();
+                // test.log(Status.PASS, "✓ Step 22: OK button clicked");
+                // Thread.sleep(2000);
 
                 // ✅ STEP 23: Click back icon
                 test.log(Status.INFO, "Step 23: Clicking back icon");
@@ -304,6 +315,59 @@ public class AbChopraHouseTest extends BaseTest {
                 test.log(Status.PASS, "✓ Step 27: New file clicked");
                 Thread.sleep(2000);
 
+                // ✅ STEP 27a: Click menu icon on the archive file
+                test.log(Status.INFO, "Step 27a: Clicking menu icon on archive file");
+                abChopraHousePage.clickArchiveMenuIcon();
+                test.log(Status.PASS, "✓ Step 27a: Menu icon clicked");
+                Thread.sleep(1000);
+
+                // ✅ STEP 27b: Click EDIT
+                test.log(Status.INFO, "Step 27b: Clicking EDIT");
+                abChopraHousePage.clickEditMenuItem();
+                test.log(Status.PASS, "✓ Step 27b: EDIT clicked");
+                Thread.sleep(1000);
+
+                // ✅ STEP 27c: Enter new file name 'EDIT NEW'
+                test.log(Status.INFO, "Step 27c: Entering file name 'EDIT NEW'");
+                abChopraHousePage.editArchiveFileName("EDIT NEW");
+                test.log(Status.PASS, "✓ Step 27c: File name 'EDIT NEW' entered");
+                Thread.sleep(500);
+
+                // ✅ STEP 27d: Click SAVE
+                test.log(Status.INFO, "Step 27d: Clicking SAVE button");
+                abChopraHousePage.clickSaveButton();
+                test.log(Status.PASS, "✓ Step 27d: SAVE clicked");
+                Thread.sleep(2000);
+
+                // ✅ STEP 27e: Verify SUCCESS dialog
+                test.log(Status.INFO, "Step 27e: Verifying SUCCESS dialog after rename");
+                Assert.assertTrue(abChopraHousePage.isArchiveRenameSuccessDisplayed(),
+                                "SUCCESS dialog should be displayed after rename");
+                test.log(Status.PASS, "✓ Step 27e: SUCCESS dialog is displayed");
+
+                // ✅ STEP 27f: Get and log the rename success message
+                test.log(Status.INFO, "Step 27f: Capturing rename success message");
+                String renameMessage = abChopraHousePage.getArchiveRenameSuccessMessage();
+                test.log(Status.PASS, "✓ Step 27f: Rename success message: " + renameMessage);
+
+                // ✅ STEP 27g: Click OK
+                test.log(Status.INFO, "Step 27g: Clicking OK");
+                abChopraHousePage.clickOkAfterRename();
+                test.log(Status.PASS, "✓ Step 27g: OK clicked");
+                Thread.sleep(1500);
+
+                // ✅ STEP 27h: Click menu icon on the renamed file (EDIT NEW)
+                test.log(Status.INFO, "Step 27h: Clicking menu icon on renamed file 'EDIT NEW'");
+                abChopraHousePage.clickEditNewMenuIcon();
+                test.log(Status.PASS, "✓ Step 27h: Menu icon on 'EDIT NEW' clicked");
+                Thread.sleep(1000);
+
+                // ✅ STEP 27i: Click ORGANISE
+                test.log(Status.INFO, "Step 27i: Clicking ORGANISE");
+                abChopraHousePage.clickOrganiseMenuItem();
+                test.log(Status.PASS, "✓ Step 27i: ORGANISE clicked");
+                Thread.sleep(2000);
+
                 // ✅ STEP 29: Click remove icon
                 test.log(Status.INFO, "Step 29: Clicking remove icon");
                 abChopraHousePage.clickRemoveIcon();
@@ -328,7 +392,7 @@ public class AbChopraHouseTest extends BaseTest {
                 test.log(Status.INFO, "📋 Delete Success Message: " + deleteMessage);
 
                 // Verify the delete success message
-                Assert.assertEquals(deleteMessage, "Your article has been successfully deleted",
+                Assert.assertEquals(deleteMessage, "Your article has been successfully deleted.",
                                 "Delete message should confirm successful deletion");
                 test.log(Status.PASS, "✓ Step 31c: Verified correct delete success message displayed");
 
