@@ -30,14 +30,8 @@ public class AbChopraHousePage {
     // Step 4: Discover button
     private final String discoverButtonXpath = "//android.view.View[@content-desc=\"DISCOVER\"]";
 
-    // Step 5: Discover page heading
-    private final String discoverPageHeadingXpath = "//android.view.View[@content-desc=\"DISCOVER +\"]";
-
     // Step 6 & 7: Scroll view for swipe
     private final String scrollViewXpath = "//android.widget.ScrollView";
-
-    // Step 8: Discover + button (note: has newline in content-desc)
-    private final String discoverPlusButtonXpath = "//android.view.View[@content-desc=\"DISCOVER\\n +\"]";
 
     // Step 9: Filter button
     private final String filterButtonXpath = "//android.widget.Button[@content-desc=\"FILTER\"]";
@@ -80,11 +74,6 @@ public class AbChopraHousePage {
 
     // Step 19 (second): File name input
     private final String fileNameInputXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.EditText[2]";
-
-    // Step 20: Close icon
-    // Element has no content-desc, no resource-id, no text.
-    // It is the only clickable ImageView child of the ADD TO FILE container.
-    private final String closeIconXpath = "//android.view.View[@content-desc=\"ADD TO FILE\"]/android.widget.ImageView[@clickable=\"true\"]";
 
     // Step 21: Saved dialog and success message
     private final String savedDialogXpath = "//android.view.View[@content-desc=\"SAVED\"]";
@@ -160,7 +149,7 @@ public class AbChopraHousePage {
         try {
             // Wait 2 seconds before swiping
             Thread.sleep(2000);
-            WebElement scrollView = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(scrollViewXpath)));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(scrollViewXpath)));
             Dimension size = driver.manage().window().getSize();
             int startX = size.width / 2;
             int startY = (int) (size.height * 0.8);
@@ -186,7 +175,7 @@ public class AbChopraHousePage {
      */
     public void swipeDownOnce() {
         try {
-            WebElement scrollView = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(scrollViewXpath)));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(scrollViewXpath)));
             Dimension size = driver.manage().window().getSize();
             int startX = size.width / 2;
             int startY = (int) (size.height * 0.2);
@@ -471,8 +460,7 @@ public class AbChopraHousePage {
      */
     public void swipeUpOnContainer() {
         try {
-            WebElement container = wait
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath(swipeContainerXpath)));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(swipeContainerXpath)));
             Dimension size = driver.manage().window().getSize();
             int startX = size.width / 2;
             int startY = (int) (size.height * 0.8);
